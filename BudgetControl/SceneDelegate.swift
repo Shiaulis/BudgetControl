@@ -7,17 +7,45 @@
 
 import UIKit
 
+struct FakeBudgetModel: BudgetModel {
+
+    private let data: [BudgetCategory] = [
+        .generateRandom(),
+        .generateRandom(),
+        .generateRandom()
+    ]
+
+    func fetchCategories() -> [BudgetCategory.ID] {
+        data.map { $0.id }
+    }
+
+    func fetchCategory(by id: BudgetCategory.ID) -> BudgetCategory? {
+        data.first { $0.id == id }
+    }
+
+}
+
+extension BudgetCategory {
+    static func generateRandom() -> Self {
+        .init(
+            id: UUID().uuidString,
+            title: "random",
+            budget: 1
+        )
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         self.window = UIWindow(windowScene: windowScene)
+        let fakeBudgetModel = FakeBudgetModel()
 
-        let rootViewController = MainViewController()
+        let rootViewController = MainViewController(budgetModel: fakeBudgetModel)
         let rootNavigation = UINavigationController(rootViewController: rootViewController)
         self.window!.rootViewController = rootNavigation
         self.window!.makeKeyAndVisible()

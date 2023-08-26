@@ -16,6 +16,7 @@
 		B19150012A993B4E0069727C /* BudgetControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150002A993B4E0069727C /* BudgetControlTests.swift */; };
 		B191500B2A993B4E0069727C /* BudgetControlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191500A2A993B4E0069727C /* BudgetControlUITests.swift */; };
 		B191500D2A993B4E0069727C /* BudgetControlUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191500C2A993B4E0069727C /* BudgetControlUITestsLaunchTests.swift */; };
+		B191501A2A994A570069727C /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150192A994A570069727C /* CategoryCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		B19150062A993B4E0069727C /* BudgetControlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetControlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B191500A2A993B4E0069727C /* BudgetControlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetControlUITests.swift; sourceTree = "<group>"; };
 		B191500C2A993B4E0069727C /* BudgetControlUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetControlUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B19150192A994A570069727C /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				B1914FE62A993B4D0069727C /* AppDelegate.swift */,
 				B1914FE82A993B4D0069727C /* SceneDelegate.swift */,
 				B1914FEA2A993B4D0069727C /* MainViewController.swift */,
+				B19150192A994A570069727C /* CategoryCollectionViewCell.swift */,
 				B1914FF22A993B4E0069727C /* Assets.xcassets */,
 				B1914FF42A993B4E0069727C /* LaunchScreen.storyboard */,
 				B1914FF72A993B4E0069727C /* Info.plist */,
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1914FEB2A993B4D0069727C /* MainViewController.swift in Sources */,
+				B191501A2A994A570069727C /* CategoryCollectionViewCell.swift in Sources */,
 				B1914FE72A993B4D0069727C /* AppDelegate.swift in Sources */,
 				B1914FF12A993B4D0069727C /* BudgetControl.xcdatamodeld in Sources */,
 				B1914FE92A993B4D0069727C /* SceneDelegate.swift in Sources */,
