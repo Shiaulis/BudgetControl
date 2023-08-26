@@ -1,26 +1,14 @@
 //
-//  MainViewController.swift
+//  CategoryListViewController.swift
 //  BudgetControl
 //
 //  Created by Andrius Shiaulis on 25.08.2023.
 //
 
 import UIKit
+import Combine
 
-struct BudgetCategory: Identifiable {
-
-    let id: String
-    let title: String
-    let budget: Decimal
-
-}
-
-protocol BudgetModel {
-    func fetchCategories() -> [BudgetCategory.ID]
-    func fetchCategory(by id: BudgetCategory.ID) -> BudgetCategory?
-}
-
-class MainViewController: UIViewController {
+final class CategoryListViewController: UIViewController {
 
     enum Section { case main }
 
@@ -29,14 +17,13 @@ class MainViewController: UIViewController {
 
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, BudgetCategory.ID>!
-    private let budgetModel: BudgetModel
-
-    fileprivate let sectionHeaderElementKind = "SectionHeader"
+    private let viewModel: CategoryListViewModel
+    private var disposables: Set<AnyCancellable> = []
 
     // MARK: - Init -
 
-    init(budgetModel: BudgetModel) {
-        self.budgetModel = budgetModel
+    init(viewModel: CategoryListViewModel) {
+        self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -53,15 +40,40 @@ class MainViewController: UIViewController {
         configureNavigation()
         configureHierarchy()
         configureDataSource()
-        setInitialData()
+        bindViewModel()
     }
 
-    // MARK: - Private -
+}
+
+extension CategoryListViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let itemIdentifier = self.dataSource.itemIdentifier(for: indexPath) else {
+            assertionFailure("Absence of identifier should be investigated")
+            return
+        }
+
+        self.viewModel.didSelectCategory(itemIdentifier)
+    }
+}
+
+// MARK: - Private -
+
+extension CategoryListViewController {
+
+    private func bindViewModel() {
+        self.viewModel.categories
+            .sink { categories in
+                self.applySnapshot(using: categories)
+            }
+            .store(in: &self.disposables)
+    }
 
     private func configureHierarchy() {
         self.collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.collectionView.backgroundColor = .systemBackground
+        self.collectionView.delegate = self
         self.view.addSubview(self.collectionView)
     }
 
@@ -69,7 +81,7 @@ class MainViewController: UIViewController {
         let cellRegistration = UICollectionView.CellRegistration<CategoryCollectionViewCell, BudgetCategory.ID> { [weak self] cell, indexPath, categoryID in
             guard let self else { return }
 
-            guard let category = self.budgetModel.fetchCategory(by: categoryID) else {
+            guard let category = self.viewModel.getCategory(for: categoryID) else {
                 assertionFailure("Didn't expect to meet an absent category")
                 return
             }
@@ -94,11 +106,10 @@ class MainViewController: UIViewController {
         return UICollectionViewCompositionalLayout.list(using: layoutConfiguration)
     }
 
-    private func setInitialData() {
+    private func applySnapshot(using items: [BudgetCategory.ID]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, BudgetCategory.ID>()
-        let categoryIDs = self.budgetModel.fetchCategories()
         snapshot.appendSections([.main])
-        snapshot.appendItems(categoryIDs)
+        snapshot.appendItems(items)
 
         self.dataSource.apply(snapshot, animatingDifferences: false)
     }
