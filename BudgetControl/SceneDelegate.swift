@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         self.window = UIWindow(windowScene: windowScene)
-        let model = FakeBudgetModel()
+        let model = RuntimeBudgetModel()
         let rootController = RootController(model: model)
         let rootViewController = RootViewController(viewModel: rootController)
         self.window!.rootViewController = rootViewController

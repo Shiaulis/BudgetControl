@@ -11,11 +11,12 @@ import Combine
 enum RootViewModelRouteCommand {
     case categoryDetails(CategoryDetailsViewModel?)
     case categoryCreation(CategoryCreationViewModel)
+    case dismiss
 }
 
 protocol RootViewModel {
 
-    var show: any Publisher<RootViewModelRouteCommand?, Never> { get }
+    var show: AnyPublisher<RootViewModelRouteCommand?, Never> { get }
 
     func makeCategoryListViewModel() -> CategoryListViewModel
 
