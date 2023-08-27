@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import OSLog
 
 struct BudgetCategory: Identifiable {
 
@@ -27,10 +28,18 @@ protocol BudgetModel: AnyObject {
 final class RuntimeBudgetModel: BudgetModel {
 
     @Published private var categories: [BudgetCategory] = []
+    private lazy var logger: Logger = .init(reporterType: Self.self)
+
+    init() {
+        self.logger.info("Model initialized")
+    }
 
     func fetchCategories() -> AnyPublisher <[BudgetCategory.ID], Never> {
         self.$categories
             .map { $0.map(\.id) }
+            .handleEvents(receiveOutput: { categories in
+                self.logger.info("Fetched \(categories.count) categories")
+            })
             .eraseToAnyPublisher()
     }
 
@@ -44,7 +53,7 @@ final class RuntimeBudgetModel: BudgetModel {
             title: title,
             budget: budget)
         self.categories.append(newCategory)
-        print("")
+        self.logger.log("Category added. ID: \(newCategory.id)")
     }
 
 }
