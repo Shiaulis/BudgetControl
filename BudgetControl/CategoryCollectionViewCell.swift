@@ -50,5 +50,5 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
             self.bottomAnchor.constraint(equalToSystemSpacingBelow: self.titleLabel.bottomAnchor, multiplier: 1)
         ])
     }
-    
+
 }

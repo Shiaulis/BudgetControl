@@ -64,6 +64,7 @@ final class RootViewController: UISplitViewController {
 extension RootViewController: UISplitViewControllerDelegate {
 
     // Forces to show primary view controller on compact width
+    // swiftlint:disable:next line_length
     func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
         .primary
     }

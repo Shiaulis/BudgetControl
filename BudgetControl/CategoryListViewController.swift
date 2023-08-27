@@ -12,7 +12,6 @@ final class CategoryListViewController: UIViewController {
 
     enum Section { case main }
 
-
     // MARK: - Properties -
 
     private var collectionView: UICollectionView!
@@ -78,7 +77,7 @@ extension CategoryListViewController {
     }
 
     private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<CategoryCollectionViewCell, BudgetCategory.ID> { [weak self] cell, indexPath, categoryID in
+        let cellRegistration = UICollectionView.CellRegistration<CategoryCollectionViewCell, BudgetCategory.ID> { [weak self] cell, _, categoryID in
             guard let self else { return }
 
             guard let category = self.viewModel.getCategory(for: categoryID) else {
@@ -89,9 +88,7 @@ extension CategoryListViewController {
             cell.configure(for: category)
         }
 
-        self.dataSource = UICollectionViewDiffableDataSource<Section, BudgetCategory.ID>(collectionView: collectionView) {
-            (collectionView, indexPath, identifier) in
-
+        self.dataSource = UICollectionViewDiffableDataSource<Section, BudgetCategory.ID>(collectionView: collectionView) { (collectionView, indexPath, identifier) in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
         }
     }

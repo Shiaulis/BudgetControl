@@ -49,12 +49,10 @@ extension RootController: CategoryListViewModel {
         self.model.fetchCategory(by: id)
     }
 
-
     func didSelectCategory(_ id: BudgetCategory.ID) {
         let category = self.model.fetchCategory(by: id)
         self.selectedCategoryViewModelSubject.send(category)
     }
-
 
 }
 
