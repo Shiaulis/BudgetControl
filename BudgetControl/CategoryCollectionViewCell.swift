@@ -34,14 +34,12 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     // MARK: - Private -
 
     private func setup() {
-        self.backgroundColor = .orange
         addSubview(self.titleLabel)
         setupTitleLabel()
     }
 
     private func setupTitleLabel() {
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.titleLabel.backgroundColor = .red
 
         NSLayoutConstraint.activate([
             self.titleLabel.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),

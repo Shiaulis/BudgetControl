@@ -53,6 +53,7 @@ final class RootViewController: UISplitViewController {
 
     private func bindViewModel() {
         self.viewModel.show
+            .receive(on: RunLoop.main)
             .sink { [weak self] command in
                 guard let self else { return }
                 switch command {
@@ -60,6 +61,8 @@ final class RootViewController: UISplitViewController {
                     self.showCategoryDetails(using: viewModel)
                 case .categoryCreation(let viewModel):
                     self.showCategoryCreation(using: viewModel)
+                case.dismiss:
+                    self.dismiss(animated: true)
                 case .none:
                     break
                 }

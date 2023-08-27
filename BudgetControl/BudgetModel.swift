@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 struct BudgetCategory: Identifiable {
 
@@ -15,51 +16,58 @@ struct BudgetCategory: Identifiable {
 
 }
 
-protocol BudgetModel {
-    mutating func addCategory(title: String, budget: Decimal)
-    func fetchCategories() -> [BudgetCategory.ID]
-    func fetchCategory(by id: BudgetCategory.ID) -> BudgetCategory?
+protocol BudgetModel: AnyObject {
+
+    func fetchCategories() -> AnyPublisher <[BudgetCategory.ID], Never>
+    func addCategory(title: String, budget: Decimal)
+    func getCategory(by id: BudgetCategory.ID) -> BudgetCategory?
+
 }
 
-struct RuntimeBudgetModel: BudgetModel {
+final class RuntimeBudgetModel: BudgetModel {
 
-    private var categories: [BudgetCategory] = []
+    @Published private var categories: [BudgetCategory] = []
 
-    func fetchCategories() -> [BudgetCategory.ID] {
-        self.categories.map { $0.id }
+    func fetchCategories() -> AnyPublisher <[BudgetCategory.ID], Never> {
+        self.$categories
+            .map { $0.map(\.id) }
+            .eraseToAnyPublisher()
     }
 
-    func fetchCategory(by id: BudgetCategory.ID) -> BudgetCategory? {
+    func getCategory(by id: BudgetCategory.ID) -> BudgetCategory? {
         self.categories.first { $0.id == id }
     }
 
-    mutating func addCategory(title: String, budget: Decimal) {
-        self.categories.append(.init(
+    func addCategory(title: String, budget: Decimal) {
+        let newCategory = BudgetCategory(
             id: UUID().uuidString,
             title: title,
             budget: budget)
-        )
+        self.categories.append(newCategory)
+        print("")
     }
 
 }
 
-struct FakeBudgetModel: BudgetModel {
+final class FakeBudgetModel: BudgetModel {
 
-    mutating func addCategory(title: String, budget: Decimal) {
+    func addCategory(title: String, budget: Decimal) {
         self.data.append(.generateRandom())
     }
 
-    private var data: [BudgetCategory] = [
+    @Published private var data: [BudgetCategory] = [
         .generateRandom(),
         .generateRandom(),
         .generateRandom()
     ]
 
-    func fetchCategories() -> [BudgetCategory.ID] {
-        data.map { $0.id }
+    func fetchCategories() -> AnyPublisher <[BudgetCategory.ID], Never> {
+        self.$data
+            .map { $0.map(\.id) }
+            .eraseToAnyPublisher()
     }
 
-    func fetchCategory(by id: BudgetCategory.ID) -> BudgetCategory? {
+    func getCategory(by id: BudgetCategory.ID) -> BudgetCategory? {
         data.first { $0.id == id }
     }
 

@@ -10,7 +10,7 @@ import Combine
 
 protocol CategoryListViewModel {
 
-    var categories: any Publisher<[BudgetCategory.ID], Never> { get }
+    var categories: AnyPublisher<[BudgetCategory.ID], Never> { get }
 
     func didSelectCategory(_ id: BudgetCategory.ID)
     func getCategory(for id: BudgetCategory.ID) -> BudgetCategory?
@@ -72,6 +72,7 @@ extension CategoryListViewController {
 
     private func bindViewModel() {
         self.viewModel.categories
+            .receive(on: RunLoop.main)
             .sink { categories in
                 self.applySnapshot(using: categories)
             }

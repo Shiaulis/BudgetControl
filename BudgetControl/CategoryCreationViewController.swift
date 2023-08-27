@@ -9,7 +9,7 @@ import UIKit
 
 protocol CategoryCreationViewModel {
 
-    func createCategory(title: String, budget: Decimal)
+    func createCategory(title: String?, budget: String?)
 }
 
 final class CategoryCreationViewController: UIViewController {
@@ -29,6 +29,7 @@ final class CategoryCreationViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         setup()
+        configureNavigation()
     }
 
     required init?(coder: NSCoder) {
@@ -39,7 +40,6 @@ final class CategoryCreationViewController: UIViewController {
 
     private func setup() {
         self.view.backgroundColor = .systemBackground
-        self.title = NSLocalizedString("Create category", comment: "")
 
         self.view.addSubview(self.titleTextField)
         setupTitleTextField()
@@ -50,7 +50,7 @@ final class CategoryCreationViewController: UIViewController {
 
     private func setupTitleTextField() {
         self.titleTextField.translatesAutoresizingMaskIntoConstraints = false
-        self.titleTextField.backgroundColor = .orange
+        self.titleTextField.borderStyle = .roundedRect
 
         NSLayoutConstraint.activate([
             self.titleTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
@@ -61,12 +61,20 @@ final class CategoryCreationViewController: UIViewController {
 
     private func setupBudgetTextField() {
         self.budgetTextField.translatesAutoresizingMaskIntoConstraints = false
-        self.budgetTextField.backgroundColor = .red
+        self.budgetTextField.borderStyle = .roundedRect
 
         NSLayoutConstraint.activate([
             self.budgetTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
             self.budgetTextField.topAnchor.constraint(equalToSystemSpacingBelow: self.titleTextField.bottomAnchor, multiplier: 1),
             self.budgetTextField.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor)
         ])
+    }
+
+    private func configureNavigation() {
+        self.title = NSLocalizedString("Create category", comment: "")
+        let rightBarButtonItemAction: UIAction = .init { _ in
+            self.viewModel.createCategory(title: self.titleTextField.text, budget: self.budgetTextField.text)
+        }
+        self.navigationItem.rightBarButtonItem = .init(systemItem: .save, primaryAction: rightBarButtonItemAction)
     }
 }
