@@ -14,8 +14,6 @@
 		B1914FF32A993B4E0069727C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1914FF22A993B4E0069727C /* Assets.xcassets */; };
 		B1914FF62A993B4E0069727C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1914FF42A993B4E0069727C /* LaunchScreen.storyboard */; };
 		B19150012A993B4E0069727C /* BudgetControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150002A993B4E0069727C /* BudgetControlTests.swift */; };
-		B191500B2A993B4E0069727C /* BudgetControlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191500A2A993B4E0069727C /* BudgetControlUITests.swift */; };
-		B191500D2A993B4E0069727C /* BudgetControlUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191500C2A993B4E0069727C /* BudgetControlUITestsLaunchTests.swift */; };
 		B191501A2A994A570069727C /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150192A994A570069727C /* CategoryCollectionViewCell.swift */; };
 		B19150202A9A198A0069727C /* CategoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191501F2A9A198A0069727C /* CategoryDetailsViewController.swift */; };
 		B19150222A9A1B0F0069727C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150212A9A1B0F0069727C /* RootViewController.swift */; };
@@ -27,13 +25,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		B1914FFD2A993B4E0069727C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B1914FDB2A993B4D0069727C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B1914FE22A993B4D0069727C;
-			remoteInfo = BudgetControl;
-		};
-		B19150072A993B4E0069727C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B1914FDB2A993B4D0069727C /* Project object */;
 			proxyType = 1;
@@ -53,9 +44,6 @@
 		B1914FF72A993B4E0069727C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1914FFC2A993B4E0069727C /* BudgetControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19150002A993B4E0069727C /* BudgetControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetControlTests.swift; sourceTree = "<group>"; };
-		B19150062A993B4E0069727C /* BudgetControlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetControlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B191500A2A993B4E0069727C /* BudgetControlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetControlUITests.swift; sourceTree = "<group>"; };
-		B191500C2A993B4E0069727C /* BudgetControlUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetControlUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B19150192A994A570069727C /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B191501F2A9A198A0069727C /* CategoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailsViewController.swift; sourceTree = "<group>"; };
 		B19150212A9A1B0F0069727C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +51,7 @@
 		B19150252A9A4E4D0069727C /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		B19150272A9A510C0069727C /* BudgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetModel.swift; sourceTree = "<group>"; };
 		B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCreationViewController.swift; sourceTree = "<group>"; };
+		B1E7B3552A9BC08B00C65DCF /* BudgetControl.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BudgetControl.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,13 +69,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B19150032A993B4E0069727C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -95,7 +77,6 @@
 			children = (
 				B1914FE52A993B4D0069727C /* BudgetControl */,
 				B1914FFF2A993B4E0069727C /* BudgetControlTests */,
-				B19150092A993B4E0069727C /* BudgetControlUITests */,
 				B1914FE42A993B4D0069727C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,7 +86,6 @@
 			children = (
 				B1914FE32A993B4D0069727C /* BudgetControl.app */,
 				B1914FFC2A993B4E0069727C /* BudgetControlTests.xctest */,
-				B19150062A993B4E0069727C /* BudgetControlUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +103,7 @@
 				B19150232A9A251E0069727C /* RootViewModel.swift */,
 				B19150252A9A4E4D0069727C /* RootController.swift */,
 				B1914FF22A993B4E0069727C /* Assets.xcassets */,
+				B1E7B3552A9BC08B00C65DCF /* BudgetControl.xctestplan */,
 				B1914FF42A993B4E0069727C /* LaunchScreen.storyboard */,
 				B1914FF72A993B4E0069727C /* Info.plist */,
 				B1914FEF2A993B4D0069727C /* BudgetControl.xcdatamodeld */,
@@ -137,15 +118,6 @@
 				B19150002A993B4E0069727C /* BudgetControlTests.swift */,
 			);
 			path = BudgetControlTests;
-			sourceTree = "<group>";
-		};
-		B19150092A993B4E0069727C /* BudgetControlUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B191500A2A993B4E0069727C /* BudgetControlUITests.swift */,
-				B191500C2A993B4E0069727C /* BudgetControlUITestsLaunchTests.swift */,
-			);
-			path = BudgetControlUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,24 +159,6 @@
 			productReference = B1914FFC2A993B4E0069727C /* BudgetControlTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B19150052A993B4E0069727C /* BudgetControlUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B19150162A993B4E0069727C /* Build configuration list for PBXNativeTarget "BudgetControlUITests" */;
-			buildPhases = (
-				B19150022A993B4E0069727C /* Sources */,
-				B19150032A993B4E0069727C /* Frameworks */,
-				B19150042A993B4E0069727C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B19150082A993B4E0069727C /* PBXTargetDependency */,
-			);
-			name = BudgetControlUITests;
-			productName = BudgetControlUITests;
-			productReference = B19150062A993B4E0069727C /* BudgetControlUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -219,10 +173,6 @@
 						CreatedOnToolsVersion = 14.3.1;
 					};
 					B1914FFB2A993B4E0069727C = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = B1914FE22A993B4D0069727C;
-					};
-					B19150052A993B4E0069727C = {
 						CreatedOnToolsVersion = 14.3.1;
 						TestTargetID = B1914FE22A993B4D0069727C;
 					};
@@ -246,7 +196,6 @@
 			targets = (
 				B1914FE22A993B4D0069727C /* BudgetControl */,
 				B1914FFB2A993B4E0069727C /* BudgetControlTests */,
-				B19150052A993B4E0069727C /* BudgetControlUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -262,13 +211,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B1914FFA2A993B4E0069727C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B19150042A993B4E0069727C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -304,15 +246,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B19150022A993B4E0069727C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B191500B2A993B4E0069727C /* BudgetControlUITests.swift in Sources */,
-				B191500D2A993B4E0069727C /* BudgetControlUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -320,11 +253,6 @@
 			isa = PBXTargetDependency;
 			target = B1914FE22A993B4D0069727C /* BudgetControl */;
 			targetProxy = B1914FFD2A993B4E0069727C /* PBXContainerItemProxy */;
-		};
-		B19150082A993B4E0069727C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B1914FE22A993B4D0069727C /* BudgetControl */;
-			targetProxy = B19150072A993B4E0069727C /* PBXContainerItemProxy */;
 		};
 		B191502B2A9B4A410069727C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -554,42 +482,6 @@
 			};
 			name = Release;
 		};
-		B19150172A993B4E0069727C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NFA8F38A32;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shiaulis.BudgetControlUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BudgetControl;
-			};
-			name = Debug;
-		};
-		B19150182A993B4E0069727C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NFA8F38A32;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shiaulis.BudgetControlUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BudgetControl;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -616,15 +508,6 @@
 			buildConfigurations = (
 				B19150142A993B4E0069727C /* Debug */,
 				B19150152A993B4E0069727C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B19150162A993B4E0069727C /* Build configuration list for PBXNativeTarget "BudgetControlUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B19150172A993B4E0069727C /* Debug */,
-				B19150182A993B4E0069727C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

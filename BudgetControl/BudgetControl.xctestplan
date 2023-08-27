@@ -1,0 +1,42 @@
+{
+  "configurations" : [
+    {
+      "id" : "1DB9CE51-53E5-40F7-ACC6-00CE5EC38B51",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:BudgetControl.xcodeproj",
+          "identifier" : "B1914FE22A993B4D0069727C",
+          "name" : "BudgetControl"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:BudgetControl.xcodeproj",
+      "identifier" : "B1914FE22A993B4D0069727C",
+      "name" : "BudgetControl"
+    },
+    "testExecutionOrdering" : "random",
+    "threadSanitizerEnabled" : true,
+    "uiTestingScreenshotsLifetime" : "keepNever",
+    "userAttachmentLifetime" : "keepNever"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BudgetControl.xcodeproj",
+        "identifier" : "B1914FFB2A993B4E0069727C",
+        "name" : "BudgetControlTests"
+      }
+    }
+  ],
+  "version" : 1
+}
