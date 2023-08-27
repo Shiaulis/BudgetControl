@@ -13,24 +13,23 @@ final class RootController {
     // MARK: - Properties -
 
     private let model: BudgetModel
-    private let categoryListSubject: CurrentValueSubject<[BudgetCategory.ID], Never> = .init([])
-    private let selectedCategoryViewModelSubject: CurrentValueSubject<CategoryDetailsViewModel?, Never> = .init(nil)
+
+    @Published private var routeCommand: RootViewModelRouteCommand?
+    @Published private var categoryList: [BudgetCategory.ID]
 
     // MARK: - Init -
 
     init(model: BudgetModel) {
         self.model = model
 
-        let categories = model.fetchCategories()
-        self.categoryListSubject.send(categories)
+        self.categoryList = model.fetchCategories()
     }
 
 }
 
 extension RootController: RootViewModel {
-
-    var selectedCategoryDetailsViewModel: any Publisher<CategoryDetailsViewModel?, Never> {
-        self.selectedCategoryViewModelSubject.eraseToAnyPublisher()
+    var show: any Publisher<RootViewModelRouteCommand?, Never> {
+        self.$routeCommand.eraseToAnyPublisher()
     }
 
     func makeCategoryListViewModel() -> CategoryListViewModel {
@@ -42,7 +41,7 @@ extension RootController: RootViewModel {
 extension RootController: CategoryListViewModel {
 
     var categories: any Publisher<[BudgetCategory.ID], Never> {
-        self.categoryListSubject.eraseToAnyPublisher()
+        self.$categoryList.eraseToAnyPublisher()
     }
 
     func getCategory(for id: BudgetCategory.ID) -> BudgetCategory? {
@@ -51,7 +50,19 @@ extension RootController: CategoryListViewModel {
 
     func didSelectCategory(_ id: BudgetCategory.ID) {
         let category = self.model.fetchCategory(by: id)
-        self.selectedCategoryViewModelSubject.send(category)
+        self.routeCommand = .categoryDetails(category)
+    }
+
+    func createNewCategory() {
+        self.routeCommand = .categoryCreation(self)
+    }
+
+}
+
+extension RootController: CategoryCreationViewModel {
+
+    func createCategory(title: String, budget: Decimal) {
+        print("")
     }
 
 }

@@ -8,6 +8,16 @@
 import UIKit
 import Combine
 
+protocol CategoryListViewModel {
+
+    var categories: any Publisher<[BudgetCategory.ID], Never> { get }
+
+    func didSelectCategory(_ id: BudgetCategory.ID)
+    func getCategory(for id: BudgetCategory.ID) -> BudgetCategory?
+    func createNewCategory()
+
+}
+
 final class CategoryListViewController: UIViewController {
 
     enum Section { case main }
@@ -96,6 +106,10 @@ extension CategoryListViewController {
     private func configureNavigation() {
         self.title = NSLocalizedString("Categories", comment: "")
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        let rightBarButtonItemAction: UIAction = .init { _ in
+            self.viewModel.createNewCategory()
+        }
+        self.navigationItem.rightBarButtonItem = .init(systemItem: .add, primaryAction: rightBarButtonItemAction)
     }
 
     private func createLayout() -> UICollectionViewLayout {

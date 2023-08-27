@@ -22,6 +22,7 @@
 		B19150242A9A251E0069727C /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150232A9A251E0069727C /* RootViewModel.swift */; };
 		B19150262A9A4E4D0069727C /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150252A9A4E4D0069727C /* RootController.swift */; };
 		B19150282A9A510C0069727C /* BudgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150272A9A510C0069727C /* BudgetModel.swift */; };
+		B191502F2A9B500B0069727C /* CategoryCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		B19150232A9A251E0069727C /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		B19150252A9A4E4D0069727C /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		B19150272A9A510C0069727C /* BudgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetModel.swift; sourceTree = "<group>"; };
+		B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCreationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				B1914FF42A993B4E0069727C /* LaunchScreen.storyboard */,
 				B1914FF72A993B4E0069727C /* Info.plist */,
 				B1914FEF2A993B4D0069727C /* BudgetControl.xcdatamodeld */,
+				B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */,
 			);
 			path = BudgetControl;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				B1914FF12A993B4D0069727C /* BudgetControl.xcdatamodeld in Sources */,
 				B19150242A9A251E0069727C /* RootViewModel.swift in Sources */,
 				B19150282A9A510C0069727C /* BudgetModel.swift in Sources */,
+				B191502F2A9B500B0069727C /* CategoryCreationViewController.swift in Sources */,
 				B1914FE92A993B4D0069727C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

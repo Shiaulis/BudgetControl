@@ -8,20 +8,16 @@
 import Foundation
 import Combine
 
-protocol RootViewModel {
-
-    var selectedCategoryDetailsViewModel: any Publisher<CategoryDetailsViewModel?, Never> { get }
-
-    func makeCategoryListViewModel() -> CategoryListViewModel
-
+enum RootViewModelRouteCommand {
+    case categoryDetails(CategoryDetailsViewModel?)
+    case categoryCreation(CategoryCreationViewModel)
 }
 
-protocol CategoryListViewModel {
+protocol RootViewModel {
 
-    var categories: any Publisher<[BudgetCategory.ID], Never> { get }
+    var show: any Publisher<RootViewModelRouteCommand?, Never> { get }
 
-    func didSelectCategory(_ id: BudgetCategory.ID)
-    func getCategory(for id: BudgetCategory.ID) -> BudgetCategory?
+    func makeCategoryListViewModel() -> CategoryListViewModel
 
 }
 

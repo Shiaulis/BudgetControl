@@ -16,13 +16,40 @@ struct BudgetCategory: Identifiable {
 }
 
 protocol BudgetModel {
+    mutating func addCategory(title: String, budget: Decimal)
     func fetchCategories() -> [BudgetCategory.ID]
     func fetchCategory(by id: BudgetCategory.ID) -> BudgetCategory?
 }
 
+struct RuntimeBudgetModel: BudgetModel {
+
+    private var categories: [BudgetCategory] = []
+
+    func fetchCategories() -> [BudgetCategory.ID] {
+        self.categories.map { $0.id }
+    }
+
+    func fetchCategory(by id: BudgetCategory.ID) -> BudgetCategory? {
+        self.categories.first { $0.id == id }
+    }
+
+    mutating func addCategory(title: String, budget: Decimal) {
+        self.categories.append(.init(
+            id: UUID().uuidString,
+            title: title,
+            budget: budget)
+        )
+    }
+
+}
+
 struct FakeBudgetModel: BudgetModel {
 
-    private let data: [BudgetCategory] = [
+    mutating func addCategory(title: String, budget: Decimal) {
+        self.data.append(.generateRandom())
+    }
+
+    private var data: [BudgetCategory] = [
         .generateRandom(),
         .generateRandom(),
         .generateRandom()

@@ -52,12 +52,30 @@ final class RootViewController: UISplitViewController {
     }
 
     private func bindViewModel() {
-        self.viewModel.selectedCategoryDetailsViewModel
-            .sink { viewModel in
-                self.categoryDetailsViewController.viewModel = viewModel
-                self.show(.secondary)
+        self.viewModel.show
+            .sink { [weak self] command in
+                guard let self else { return }
+                switch command {
+                case .categoryDetails(let viewModel):
+                    self.showCategoryDetails(using: viewModel)
+                case .categoryCreation(let viewModel):
+                    self.showCategoryCreation(using: viewModel)
+                case .none:
+                    break
+                }
             }
             .store(in: &self.disposables)
+    }
+
+    private func showCategoryDetails(using viewModel: CategoryDetailsViewModel?) {
+        self.categoryDetailsViewController.viewModel = viewModel
+        self.show(.secondary)
+    }
+
+    private func showCategoryCreation(using viewModel: CategoryCreationViewModel) {
+        let categoryCreationViewController = CategoryCreationViewController(viewModel: viewModel)
+        let navigation = UINavigationController(rootViewController: categoryCreationViewController)
+        present(navigation, animated: true)
     }
 }
 
