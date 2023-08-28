@@ -13,7 +13,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:BudgetControl/BudgetControl.xctestplan"
+            reference = "container:BudgetControl/Infrastructure/BudgetControl.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

@@ -87,7 +87,6 @@
 		B1914FDA2A993B4D0069727C = {
 			isa = PBXGroup;
 			children = (
-				B1E7B36B2A9C84BD00C65DCF /* BudgetCategoryRepository.swift */,
 				B1914FE52A993B4D0069727C /* BudgetControl */,
 				B1914FFF2A993B4E0069727C /* BudgetControlTests */,
 				B1914FE42A993B4D0069727C /* Products */,
@@ -106,26 +105,10 @@
 		B1914FE52A993B4D0069727C /* BudgetControl */ = {
 			isa = PBXGroup;
 			children = (
-				B1E7B3632A9C022E00C65DCF /* BCBudgetCategory+CoreDataClass.swift */,
-				B1E7B3642A9C022E00C65DCF /* BCBudgetCategory+CoreDataProperties.swift */,
-				B19150272A9A510C0069727C /* BudgetModel.swift */,
-				B1914FE62A993B4D0069727C /* AppDelegate.swift */,
-				B1914FE82A993B4D0069727C /* SceneDelegate.swift */,
-				B19150212A9A1B0F0069727C /* RootViewController.swift */,
-				B1914FEA2A993B4D0069727C /* CategoryListViewController.swift */,
-				B191501F2A9A198A0069727C /* CategoryDetailsViewController.swift */,
-				B19150192A994A570069727C /* CategoryCollectionViewCell.swift */,
-				B19150232A9A251E0069727C /* RootViewModel.swift */,
-				B19150252A9A4E4D0069727C /* RootController.swift */,
-				B1E7B3682A9C05D100C65DCF /* PersistentContainer.swift */,
-				B1914FF22A993B4E0069727C /* Assets.xcassets */,
-				B1E7B3552A9BC08B00C65DCF /* BudgetControl.xctestplan */,
-				B1914FF42A993B4E0069727C /* LaunchScreen.storyboard */,
-				B1914FF72A993B4E0069727C /* Info.plist */,
-				B1914FEF2A993B4D0069727C /* BudgetControl.xcdatamodeld */,
-				B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */,
-				B1E7B3572A9BFD7A00C65DCF /* Logger+Extensions.swift */,
-				B1E7B36E2A9C88CA00C65DCF /* NSObject+Extensions.swift */,
+				B1E7B3722A9CA2A300C65DCF /* Model */,
+				B1E7B3772A9CA39F00C65DCF /* Presentation */,
+				B1E7B3732A9CA32400C65DCF /* Infrastructure */,
+				B1E7B3762A9CA38C00C65DCF /* Extensions */,
 			);
 			path = BudgetControl;
 			sourceTree = "<group>";
@@ -136,6 +119,95 @@
 				B19150002A993B4E0069727C /* BudgetControlTests.swift */,
 			);
 			path = BudgetControlTests;
+			sourceTree = "<group>";
+		};
+		B1E7B3712A9CA29400C65DCF /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				B1914FEF2A993B4D0069727C /* BudgetControl.xcdatamodeld */,
+				B1E7B3682A9C05D100C65DCF /* PersistentContainer.swift */,
+				B1E7B3632A9C022E00C65DCF /* BCBudgetCategory+CoreDataClass.swift */,
+				B1E7B3642A9C022E00C65DCF /* BCBudgetCategory+CoreDataProperties.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		B1E7B3722A9CA2A300C65DCF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B19150272A9A510C0069727C /* BudgetModel.swift */,
+				B1E7B36B2A9C84BD00C65DCF /* BudgetCategoryRepository.swift */,
+				B1E7B3712A9CA29400C65DCF /* Database */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B1E7B3732A9CA32400C65DCF /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				B1914FE62A993B4D0069727C /* AppDelegate.swift */,
+				B1914FE82A993B4D0069727C /* SceneDelegate.swift */,
+				B1914FF22A993B4E0069727C /* Assets.xcassets */,
+				B1E7B3552A9BC08B00C65DCF /* BudgetControl.xctestplan */,
+				B1914FF42A993B4E0069727C /* LaunchScreen.storyboard */,
+				B1914FF72A993B4E0069727C /* Info.plist */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		B1E7B3762A9CA38C00C65DCF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B1E7B3572A9BFD7A00C65DCF /* Logger+Extensions.swift */,
+				B1E7B36E2A9C88CA00C65DCF /* NSObject+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B1E7B3772A9CA39F00C65DCF /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				B1E7B3782A9CA3BC00C65DCF /* Root */,
+				B1E7B3792A9CA3C300C65DCF /* CategoryList */,
+				B1E7B37A2A9CA3CA00C65DCF /* CategoryDetails */,
+				B1E7B37B2A9CA3D500C65DCF /* CategoryCreation */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		B1E7B3782A9CA3BC00C65DCF /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				B19150252A9A4E4D0069727C /* RootController.swift */,
+				B19150232A9A251E0069727C /* RootViewModel.swift */,
+				B19150212A9A1B0F0069727C /* RootViewController.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		B1E7B3792A9CA3C300C65DCF /* CategoryList */ = {
+			isa = PBXGroup;
+			children = (
+				B1914FEA2A993B4D0069727C /* CategoryListViewController.swift */,
+				B19150192A994A570069727C /* CategoryCollectionViewCell.swift */,
+			);
+			path = CategoryList;
+			sourceTree = "<group>";
+		};
+		B1E7B37A2A9CA3CA00C65DCF /* CategoryDetails */ = {
+			isa = PBXGroup;
+			children = (
+				B191501F2A9A198A0069727C /* CategoryDetailsViewController.swift */,
+			);
+			path = CategoryDetails;
+			sourceTree = "<group>";
+		};
+		B1E7B37B2A9CA3D500C65DCF /* CategoryCreation */ = {
+			isa = PBXGroup;
+			children = (
+				B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */,
+			);
+			path = CategoryCreation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,7 +491,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BudgetControl/Info.plist;
+				INFOPLIST_FILE = BudgetControl/Infrastructure/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -447,7 +519,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BudgetControl/Info.plist;
+				INFOPLIST_FILE = BudgetControl/Infrastructure/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
