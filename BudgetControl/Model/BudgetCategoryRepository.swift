@@ -43,6 +43,7 @@ protocol BudgetCategoryRepository {
     func fetchCategoryListIDs() throws -> [BudgetCategory.ID]
     func category(for id: BudgetCategory.ID) throws -> BudgetCategory
     func save(_ category: BudgetCategory) throws
+    func deleteCategory(by id: BudgetCategory.ID) throws
 
 }
 
@@ -87,6 +88,14 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
             if self.mainContext.hasChanges {
                 try self.mainContext.save()
             }
+        }
+    }
+
+    func deleteCategory(by id: BudgetCategory.ID) throws {
+        try self.mainContext.performAndWait {
+            let objectToDelete = try expectedObject(for: id)
+            self.mainContext.delete(objectToDelete)
+            try self.mainContext.save()
         }
     }
 

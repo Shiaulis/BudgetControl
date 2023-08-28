@@ -28,6 +28,7 @@
 		B1E7B36C2A9C84BD00C65DCF /* BudgetCategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B36B2A9C84BD00C65DCF /* BudgetCategoryRepository.swift */; };
 		B1E7B36F2A9C88CA00C65DCF /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B36E2A9C88CA00C65DCF /* NSObject+Extensions.swift */; };
 		B1E7B37D2A9CB34C00C65DCF /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B37C2A9CB34C00C65DCF /* UIBarButtonItem+Extensions.swift */; };
+		B1E7B3802A9CC01400C65DCF /* CategoryDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B37F2A9CC01400C65DCF /* CategoryDetailsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		B1E7B36B2A9C84BD00C65DCF /* BudgetCategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryRepository.swift; sourceTree = "<group>"; };
 		B1E7B36E2A9C88CA00C65DCF /* NSObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
 		B1E7B37C2A9CB34C00C65DCF /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
+		B1E7B37F2A9CC01400C65DCF /* CategoryDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 		B1E7B37A2A9CA3CA00C65DCF /* CategoryDetails */ = {
 			isa = PBXGroup;
 			children = (
+				B1E7B37F2A9CC01400C65DCF /* CategoryDetailsController.swift */,
 				B191501F2A9A198A0069727C /* CategoryDetailsViewController.swift */,
 			);
 			path = CategoryDetails;
@@ -329,6 +332,7 @@
 				B1E7B3692A9C05D100C65DCF /* PersistentContainer.swift in Sources */,
 				B19150242A9A251E0069727C /* RootViewModel.swift in Sources */,
 				B19150282A9A510C0069727C /* BudgetModel.swift in Sources */,
+				B1E7B3802A9CC01400C65DCF /* CategoryDetailsController.swift in Sources */,
 				B1E7B3582A9BFD7A00C65DCF /* Logger+Extensions.swift in Sources */,
 				B191502F2A9B500B0069727C /* CategoryCreationViewController.swift in Sources */,
 				B1E7B36F2A9C88CA00C65DCF /* NSObject+Extensions.swift in Sources */,

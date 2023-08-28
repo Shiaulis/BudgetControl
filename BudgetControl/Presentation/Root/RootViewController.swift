@@ -41,13 +41,14 @@ final class RootViewController: UISplitViewController {
     }
 
     private func setupPrimaryViewController() {
-        let listViewModel = viewModel.makeCategoryListViewModel()
+        let listViewModel = self.viewModel.makeCategoryListViewModel()
         let categoryList = CategoryListViewController(viewModel: listViewModel)
         setViewController(categoryList, for: .primary)
     }
 
     private func setupSecondaryViewController() {
-        self.categoryDetailsViewController = CategoryDetailsViewController()
+        let detailsViewModel = self.viewModel.makeCategoryDetailsViewModel()
+        self.categoryDetailsViewController = CategoryDetailsViewController(viewModel: detailsViewModel)
         setViewController(self.categoryDetailsViewController, for: .secondary)
     }
 
@@ -57,12 +58,14 @@ final class RootViewController: UISplitViewController {
             .sink { [weak self] command in
                 guard let self else { return }
                 switch command {
-                case .categoryDetails(let viewModel):
-                    self.showCategoryDetails(using: viewModel)
+                case .categoryDetails:
+                    self.showCategoryDetails()
                 case .categoryCreation(let viewModel):
                     self.showCategoryCreation(using: viewModel)
-                case.dismiss:
+                case .dismiss:
                     self.dismiss(animated: true)
+                case .categoryList:
+                    self.show(.primary)
                 case .none:
                     break
                 }
@@ -70,8 +73,7 @@ final class RootViewController: UISplitViewController {
             .store(in: &self.disposables)
     }
 
-    private func showCategoryDetails(using viewModel: CategoryDetailsViewModel?) {
-        self.categoryDetailsViewController.viewModel = viewModel
+    private func showCategoryDetails() {
         self.show(.secondary)
     }
 

@@ -9,9 +9,10 @@ import Foundation
 import Combine
 
 enum RootViewModelRouteCommand {
-    case categoryDetails(CategoryDetailsViewModel?)
+    case categoryDetails
     case categoryCreation(CategoryCreationViewModel)
     case dismiss
+    case categoryList
 }
 
 protocol RootViewModel {
@@ -19,16 +20,11 @@ protocol RootViewModel {
     var show: AnyPublisher<RootViewModelRouteCommand?, Never> { get }
 
     func makeCategoryListViewModel() -> CategoryListViewModel
+    func makeCategoryDetailsViewModel() -> CategoryDetailsViewModel
 
 }
 
 protocol CategoryListItemViewModel {
-
-    var title: String { get }
-
-}
-
-protocol CategoryDetailsViewModel {
 
     var title: String { get }
 

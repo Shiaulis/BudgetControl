@@ -16,13 +16,19 @@ final class RootController {
     @Published private var routeCommand: RootViewModelRouteCommand?
     @Published private var categoryList: [BudgetCategory.ID] = []
 
+    private let categoryDetails: CategoryDetailsController
+
     private var disposables: Set<AnyCancellable> = []
 
     // MARK: - Init -
 
     init(model: BudgetModel) {
         self.model = model
+        self.categoryDetails = .init(model: model)
 
+        self.categoryDetails.completion = {
+            self.routeCommand = .categoryList
+        }
         bindModel()
     }
 
@@ -54,6 +60,10 @@ extension RootController: RootViewModel {
         self
     }
 
+    func makeCategoryDetailsViewModel() -> CategoryDetailsViewModel {
+        self.categoryDetails
+    }
+
 }
 
 extension RootController: CategoryListViewModel {
@@ -67,8 +77,8 @@ extension RootController: CategoryListViewModel {
     }
 
     func didSelectCategory(_ id: BudgetCategory.ID) {
-        let category = self.model.getCategory(by: id)
-        self.routeCommand = .categoryDetails(category)
+        self.categoryDetails.categoryID = id
+        self.routeCommand = .categoryDetails
     }
 
     func createNewCategory() {
@@ -95,5 +105,3 @@ extension RootController: CategoryCreationViewModel {
     }
 
 }
-
-extension BudgetCategory: CategoryDetailsViewModel {}

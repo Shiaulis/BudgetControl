@@ -14,6 +14,7 @@ protocol BudgetModel: AnyObject {
     func categoryListPublisher() -> AnyPublisher <[BudgetCategory.ID], Never>
     func addCategory(title: String, budget: Decimal)
     func getCategory(by id: BudgetCategory.ID) -> BudgetCategory?
+    func deleteCategory(by id: BudgetCategory.ID)
 
 }
 
@@ -58,6 +59,16 @@ final class PersistentBudgetModel: BudgetModel {
         }
     }
 
+    func deleteCategory(by id: BudgetCategory.ID) {
+        do {
+            try self.repository.deleteCategory(by: id)
+            updateCategoryIDList()
+        } catch {
+            self.logger.error("Failed to delete category with ID: \(id). Error: \(error)")
+            assertionFailure()
+        }
+    }
+
     // MARK: - Private -
 
     private func updateCategoryIDList() {
@@ -74,6 +85,9 @@ final class PersistentBudgetModel: BudgetModel {
 }
 
 final class FakeBudgetModel: BudgetModel {
+    func deleteCategory(by id: BudgetCategory.ID) {
+        data.removeAll { $0.id == id }
+    }
 
     func addCategory(title: String, budget: Decimal) {
         self.data.append(.generateRandom())
