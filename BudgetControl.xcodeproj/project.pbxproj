@@ -22,6 +22,11 @@
 		B19150282A9A510C0069727C /* BudgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150272A9A510C0069727C /* BudgetModel.swift */; };
 		B191502F2A9B500B0069727C /* CategoryCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */; };
 		B1E7B3582A9BFD7A00C65DCF /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B3572A9BFD7A00C65DCF /* Logger+Extensions.swift */; };
+		B1E7B3652A9C022E00C65DCF /* BCBudgetCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B3632A9C022E00C65DCF /* BCBudgetCategory+CoreDataClass.swift */; };
+		B1E7B3662A9C022E00C65DCF /* BCBudgetCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B3642A9C022E00C65DCF /* BCBudgetCategory+CoreDataProperties.swift */; };
+		B1E7B3692A9C05D100C65DCF /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B3682A9C05D100C65DCF /* PersistentContainer.swift */; };
+		B1E7B36C2A9C84BD00C65DCF /* BudgetCategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B36B2A9C84BD00C65DCF /* BudgetCategoryRepository.swift */; };
+		B1E7B36F2A9C88CA00C65DCF /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B36E2A9C88CA00C65DCF /* NSObject+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,11 @@
 		B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCreationViewController.swift; sourceTree = "<group>"; };
 		B1E7B3552A9BC08B00C65DCF /* BudgetControl.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BudgetControl.xctestplan; sourceTree = "<group>"; };
 		B1E7B3572A9BFD7A00C65DCF /* Logger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Extensions.swift"; sourceTree = "<group>"; };
+		B1E7B3632A9C022E00C65DCF /* BCBudgetCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BCBudgetCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B1E7B3642A9C022E00C65DCF /* BCBudgetCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BCBudgetCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B1E7B3682A9C05D100C65DCF /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
+		B1E7B36B2A9C84BD00C65DCF /* BudgetCategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryRepository.swift; sourceTree = "<group>"; };
+		B1E7B36E2A9C88CA00C65DCF /* NSObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +87,7 @@
 		B1914FDA2A993B4D0069727C = {
 			isa = PBXGroup;
 			children = (
+				B1E7B36B2A9C84BD00C65DCF /* BudgetCategoryRepository.swift */,
 				B1914FE52A993B4D0069727C /* BudgetControl */,
 				B1914FFF2A993B4E0069727C /* BudgetControlTests */,
 				B1914FE42A993B4D0069727C /* Products */,
@@ -95,6 +106,8 @@
 		B1914FE52A993B4D0069727C /* BudgetControl */ = {
 			isa = PBXGroup;
 			children = (
+				B1E7B3632A9C022E00C65DCF /* BCBudgetCategory+CoreDataClass.swift */,
+				B1E7B3642A9C022E00C65DCF /* BCBudgetCategory+CoreDataProperties.swift */,
 				B19150272A9A510C0069727C /* BudgetModel.swift */,
 				B1914FE62A993B4D0069727C /* AppDelegate.swift */,
 				B1914FE82A993B4D0069727C /* SceneDelegate.swift */,
@@ -104,6 +117,7 @@
 				B19150192A994A570069727C /* CategoryCollectionViewCell.swift */,
 				B19150232A9A251E0069727C /* RootViewModel.swift */,
 				B19150252A9A4E4D0069727C /* RootController.swift */,
+				B1E7B3682A9C05D100C65DCF /* PersistentContainer.swift */,
 				B1914FF22A993B4E0069727C /* Assets.xcassets */,
 				B1E7B3552A9BC08B00C65DCF /* BudgetControl.xctestplan */,
 				B1914FF42A993B4E0069727C /* LaunchScreen.storyboard */,
@@ -111,6 +125,7 @@
 				B1914FEF2A993B4D0069727C /* BudgetControl.xcdatamodeld */,
 				B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */,
 				B1E7B3572A9BFD7A00C65DCF /* Logger+Extensions.swift */,
+				B1E7B36E2A9C88CA00C65DCF /* NSObject+Extensions.swift */,
 			);
 			path = BudgetControl;
 			sourceTree = "<group>";
@@ -229,15 +244,20 @@
 			files = (
 				B1914FEB2A993B4D0069727C /* CategoryListViewController.swift in Sources */,
 				B19150202A9A198A0069727C /* CategoryDetailsViewController.swift in Sources */,
+				B1E7B36C2A9C84BD00C65DCF /* BudgetCategoryRepository.swift in Sources */,
 				B191501A2A994A570069727C /* CategoryCollectionViewCell.swift in Sources */,
 				B19150222A9A1B0F0069727C /* RootViewController.swift in Sources */,
 				B1914FE72A993B4D0069727C /* AppDelegate.swift in Sources */,
 				B19150262A9A4E4D0069727C /* RootController.swift in Sources */,
 				B1914FF12A993B4D0069727C /* BudgetControl.xcdatamodeld in Sources */,
+				B1E7B3692A9C05D100C65DCF /* PersistentContainer.swift in Sources */,
 				B19150242A9A251E0069727C /* RootViewModel.swift in Sources */,
 				B19150282A9A510C0069727C /* BudgetModel.swift in Sources */,
 				B1E7B3582A9BFD7A00C65DCF /* Logger+Extensions.swift in Sources */,
 				B191502F2A9B500B0069727C /* CategoryCreationViewController.swift in Sources */,
+				B1E7B36F2A9C88CA00C65DCF /* NSObject+Extensions.swift in Sources */,
+				B1E7B3652A9C022E00C65DCF /* BCBudgetCategory+CoreDataClass.swift in Sources */,
+				B1E7B3662A9C022E00C65DCF /* BCBudgetCategory+CoreDataProperties.swift in Sources */,
 				B1914FE92A993B4D0069727C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

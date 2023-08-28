@@ -9,51 +9,66 @@ import Foundation
 import Combine
 import OSLog
 
-struct BudgetCategory: Identifiable {
-
-    let id: String
-    let title: String
-    let budget: Decimal
-
-}
-
 protocol BudgetModel: AnyObject {
 
-    func fetchCategories() -> AnyPublisher <[BudgetCategory.ID], Never>
+    func categoryListPublisher() -> AnyPublisher <[BudgetCategory.ID], Never>
     func addCategory(title: String, budget: Decimal)
     func getCategory(by id: BudgetCategory.ID) -> BudgetCategory?
 
 }
 
-final class RuntimeBudgetModel: BudgetModel {
+final class PersistentBudgetModel: BudgetModel {
 
-    @Published private var categories: [BudgetCategory] = []
+    @Published private var categoryIDs: [BudgetCategory.ID] = []
+    private let repository: BudgetCategoryRepository
     private lazy var logger: Logger = .init(reporterType: Self.self)
 
-    init() {
+    init(repository: BudgetCategoryRepository) {
+        self.repository = repository
         self.logger.info("Model initialized")
     }
 
-    func fetchCategories() -> AnyPublisher <[BudgetCategory.ID], Never> {
-        self.$categories
-            .map { $0.map(\.id) }
-            .handleEvents(receiveOutput: { categories in
-                self.logger.info("Fetched \(categories.count) categories")
-            })
-            .eraseToAnyPublisher()
-    }
+    // MARK: - Public API -
 
-    func getCategory(by id: BudgetCategory.ID) -> BudgetCategory? {
-        self.categories.first { $0.id == id }
+    func categoryListPublisher() -> AnyPublisher<[BudgetCategory.ID], Never> {
+        updateCategoryIDList()
+        return self.$categoryIDs.eraseToAnyPublisher()
     }
 
     func addCategory(title: String, budget: Decimal) {
-        let newCategory = BudgetCategory(
-            id: UUID().uuidString,
-            title: title,
-            budget: budget)
-        self.categories.append(newCategory)
-        self.logger.log("Category added. ID: \(newCategory.id)")
+        let category: BudgetCategory = .newCategory(title: title, budget: budget)
+
+        do {
+            try self.repository.save(category)
+            self.logger.log("Category with title: \"\(title)\" was saved successfully")
+            updateCategoryIDList()
+        } catch {
+            self.logger.error("Failed to create new category. Error: \(error.localizedDescription)")
+            assertionFailure()
+        }
+    }
+
+    func getCategory(by id: BudgetCategory.ID) -> BudgetCategory? {
+        do {
+            return try self.repository.category(for: id)
+        } catch {
+            self.logger.log("Unable to get category for ID: \(id, privacy: .public)")
+            assertionFailure()
+            return nil
+        }
+    }
+
+    // MARK: - Private -
+
+    private func updateCategoryIDList() {
+        do {
+            let categoryListIDs = try self.repository.fetchCategoryListIDs()
+            self.logger.log("Fetched \(categoryListIDs.count) categories from repository")
+            self.categoryIDs = categoryListIDs
+        } catch {
+            self.logger.error("Failed to fetch category IDs. Error: \(error.localizedDescription)")
+            assertionFailure()
+        }
     }
 
 }
@@ -70,7 +85,7 @@ final class FakeBudgetModel: BudgetModel {
         .generateRandom()
     ]
 
-    func fetchCategories() -> AnyPublisher <[BudgetCategory.ID], Never> {
+    func categoryListPublisher() -> AnyPublisher <[BudgetCategory.ID], Never> {
         self.$data
             .map { $0.map(\.id) }
             .eraseToAnyPublisher()
@@ -80,16 +95,4 @@ final class FakeBudgetModel: BudgetModel {
         data.first { $0.id == id }
     }
 
-}
-
-extension BudgetCategory {
-    static func generateRandom() -> Self {
-        let uuid = UUID().uuidString
-
-        return .init(
-            id: uuid,
-            title: "random \(uuid)",
-            budget: 1
-        )
-    }
 }

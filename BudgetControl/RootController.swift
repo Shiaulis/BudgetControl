@@ -29,7 +29,7 @@ final class RootController {
     // MARK: - Private -
 
     private func bindModel() {
-        self.model.fetchCategories()
+        self.model.categoryListPublisher()
             .sink { categoryList in
                 self.categoryList = categoryList
             }
