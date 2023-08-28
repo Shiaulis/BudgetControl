@@ -27,6 +27,7 @@
 		B1E7B3692A9C05D100C65DCF /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B3682A9C05D100C65DCF /* PersistentContainer.swift */; };
 		B1E7B36C2A9C84BD00C65DCF /* BudgetCategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B36B2A9C84BD00C65DCF /* BudgetCategoryRepository.swift */; };
 		B1E7B36F2A9C88CA00C65DCF /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B36E2A9C88CA00C65DCF /* NSObject+Extensions.swift */; };
+		B1E7B37D2A9CB34C00C65DCF /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B37C2A9CB34C00C65DCF /* UIBarButtonItem+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		B1E7B3682A9C05D100C65DCF /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		B1E7B36B2A9C84BD00C65DCF /* BudgetCategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryRepository.swift; sourceTree = "<group>"; };
 		B1E7B36E2A9C88CA00C65DCF /* NSObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
+		B1E7B37C2A9CB34C00C65DCF /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			children = (
 				B1E7B3572A9BFD7A00C65DCF /* Logger+Extensions.swift */,
 				B1E7B36E2A9C88CA00C65DCF /* NSObject+Extensions.swift */,
+				B1E7B37C2A9CB34C00C65DCF /* UIBarButtonItem+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1E7B37D2A9CB34C00C65DCF /* UIBarButtonItem+Extensions.swift in Sources */,
 				B1914FEB2A993B4D0069727C /* CategoryListViewController.swift in Sources */,
 				B19150202A9A198A0069727C /* CategoryDetailsViewController.swift in Sources */,
 				B1E7B36C2A9C84BD00C65DCF /* BudgetCategoryRepository.swift in Sources */,

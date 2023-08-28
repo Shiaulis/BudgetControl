@@ -107,10 +107,9 @@ extension CategoryListViewController {
     private func configureNavigation() {
         self.title = NSLocalizedString("Categories", comment: "")
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        let rightBarButtonItemAction: UIAction = .init { _ in
-            self.viewModel.createNewCategory()
+        self.navigationItem.rightBarButtonItem = .systemActionItem(.add) { [weak self] in
+            self?.viewModel.createNewCategory()
         }
-        self.navigationItem.rightBarButtonItem = .init(systemItem: .add, primaryAction: rightBarButtonItemAction)
     }
 
     private func createLayout() -> UICollectionViewLayout {

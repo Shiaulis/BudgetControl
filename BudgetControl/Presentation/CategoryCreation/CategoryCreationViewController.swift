@@ -72,9 +72,9 @@ final class CategoryCreationViewController: UIViewController {
 
     private func configureNavigation() {
         self.title = NSLocalizedString("Create category", comment: "")
-        let rightBarButtonItemAction: UIAction = .init { _ in
+        self.navigationItem.rightBarButtonItem = .systemActionItem(.save) { [weak self] in
+            guard let self else { return }
             self.viewModel.createCategory(title: self.titleTextField.text, budget: self.budgetTextField.text)
         }
-        self.navigationItem.rightBarButtonItem = .init(systemItem: .save, primaryAction: rightBarButtonItemAction)
     }
 }
