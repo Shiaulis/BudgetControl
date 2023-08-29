@@ -104,6 +104,8 @@ extension RootController: CategoryListViewModel {
 
 extension RootController: CategoryCreationViewModel {
 
+    var configuration: CategoryCreationConfiguration { .init() }
+
     func createCategory(title: String?, budget: String?) {
         guard let title else {
             assertionFailure("We need to add input validation in future")

@@ -7,8 +7,17 @@
 
 import UIKit
 
+struct CategoryCreationConfiguration {
+
+    let titlePlaceholder = NSLocalizedString("Category name", comment: "")
+    let budgetPlaceholder = NSLocalizedString("Budget amount", comment: "")
+    let spentForNowPlaceholder = NSLocalizedString("Spent for now", comment: "")
+
+}
+
 protocol CategoryCreationViewModel {
 
+    var configuration: CategoryCreationConfiguration { get }
     func createCategory(title: String?, budget: String?)
 }
 
@@ -20,6 +29,7 @@ final class CategoryCreationViewController: UIViewController {
 
     private let titleTextField: UITextField = .init()
     private let budgetTextField: UITextField = .init()
+    private let spentForNowTextField: UITextField = .init()
 
     // MARK: - Init -
 
@@ -29,7 +39,7 @@ final class CategoryCreationViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         setup()
-        configureNavigation()
+        setupNavigation()
     }
 
     required init?(coder: NSCoder) {
@@ -39,18 +49,23 @@ final class CategoryCreationViewController: UIViewController {
     // MARK: - Private -
 
     private func setup() {
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .systemGroupedBackground
 
         self.view.addSubview(self.titleTextField)
         setupTitleTextField()
 
         self.view.addSubview(self.budgetTextField)
         setupBudgetTextField()
+
+        self.view.addSubview(self.spentForNowTextField)
+        setupSpentForNowTextField()
     }
 
     private func setupTitleTextField() {
         self.titleTextField.translatesAutoresizingMaskIntoConstraints = false
         self.titleTextField.borderStyle = .roundedRect
+        self.titleTextField.placeholder = self.viewModel.configuration.titlePlaceholder
+        self.titleTextField.becomeFirstResponder()
 
         NSLayoutConstraint.activate([
             self.titleTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
@@ -62,6 +77,7 @@ final class CategoryCreationViewController: UIViewController {
     private func setupBudgetTextField() {
         self.budgetTextField.translatesAutoresizingMaskIntoConstraints = false
         self.budgetTextField.borderStyle = .roundedRect
+        self.budgetTextField.placeholder = self.viewModel.configuration.budgetPlaceholder
 
         NSLayoutConstraint.activate([
             self.budgetTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
@@ -70,8 +86,20 @@ final class CategoryCreationViewController: UIViewController {
         ])
     }
 
-    private func configureNavigation() {
-        self.title = NSLocalizedString("Create category", comment: "")
+    private func setupSpentForNowTextField() {
+        self.spentForNowTextField.translatesAutoresizingMaskIntoConstraints = false
+        self.spentForNowTextField.borderStyle = .roundedRect
+        self.spentForNowTextField.placeholder = self.viewModel.configuration.spentForNowPlaceholder
+
+        NSLayoutConstraint.activate([
+            self.spentForNowTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
+            self.spentForNowTextField.topAnchor.constraint(equalToSystemSpacingBelow: self.budgetTextField.bottomAnchor, multiplier: 1),
+            self.spentForNowTextField.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor)
+        ])
+    }
+
+    private func setupNavigation() {
+        self.title = NSLocalizedString("New category", comment: "")
         self.navigationItem.rightBarButtonItem = .systemActionItem(.save) { [weak self] in
             guard let self else { return }
             self.viewModel.createCategory(title: self.titleTextField.text, budget: self.budgetTextField.text)
