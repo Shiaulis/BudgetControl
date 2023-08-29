@@ -48,6 +48,17 @@ final class RootController {
         }
     }
 
+    private func getCategory(for id: BudgetCategory.ID) -> BudgetCategory? {
+        self.model.getCategory(by: id)
+    }
+
+    private func mapConfiguration(from category: BudgetCategory) -> CategoryListItemConfiguration {
+        .init(
+            title: category.title,
+            budgetValue: BudgetConverter().makeCurrencyString(from: category.budget),
+            id: category.id
+        )
+    }
 }
 
 extension RootController: RootViewModel {
@@ -72,8 +83,12 @@ extension RootController: CategoryListViewModel {
         self.$categoryList.eraseToAnyPublisher()
     }
 
-    func getCategory(for id: BudgetCategory.ID) -> BudgetCategory? {
-        self.model.getCategory(by: id)
+    func getConfiguration(for id: BudgetCategory.ID) -> CategoryListItemConfiguration? {
+        guard let category = getCategory(for: id) else {
+            return nil
+        }
+
+        return mapConfiguration(from: category)
     }
 
     func didSelectCategory(_ id: BudgetCategory.ID) {

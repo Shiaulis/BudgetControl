@@ -8,12 +8,19 @@
 import UIKit
 import Combine
 
+struct CategoryListItemConfiguration {
+    let title: String
+    let budgetTitle: String = NSLocalizedString("Budget", comment: "")
+    let budgetValue: String
+    let id: BudgetCategory.ID
+}
+
 protocol CategoryListViewModel {
 
     var categories: AnyPublisher<[BudgetCategory.ID], Never> { get }
 
     func didSelectCategory(_ id: BudgetCategory.ID)
-    func getCategory(for id: BudgetCategory.ID) -> BudgetCategory?
+    func getConfiguration(for id: BudgetCategory.ID) -> CategoryListItemConfiguration?
     func createNewCategory()
 
 }
@@ -91,12 +98,12 @@ extension CategoryListViewController {
         let cellRegistration = UICollectionView.CellRegistration<CategoryCollectionViewCell, BudgetCategory.ID> { [weak self] cell, _, categoryID in
             guard let self else { return }
 
-            guard let category = self.viewModel.getCategory(for: categoryID) else {
+            guard let configuration = self.viewModel.getConfiguration(for: categoryID) else {
                 assertionFailure("Didn't expect to meet an absent category")
                 return
             }
 
-            cell.configure(for: category)
+            cell.configure(for: configuration)
         }
 
         self.dataSource = UICollectionViewDiffableDataSource<Section, BudgetCategory.ID>(collectionView: collectionView) { (collectionView, indexPath, identifier) in

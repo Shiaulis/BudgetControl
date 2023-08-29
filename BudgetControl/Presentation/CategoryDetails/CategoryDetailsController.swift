@@ -76,12 +76,9 @@ final class CategoryDetailsController: CategoryDetailsViewModel {
     private func mapConfiguration(from category: BudgetCategory) -> CategoryDetailsConfiguration {
         .init(
             title: category.title,
-            budget: string(from: category.budget),
+            budget: BudgetConverter().makeCurrencyString(from: category.budget),
             isDeleteEnabled: true
         )
     }
 
-    private func string(from decimal: Decimal) -> String {
-        .init(describing: decimal)
-    }
 }
