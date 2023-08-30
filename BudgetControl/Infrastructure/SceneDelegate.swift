@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private let factory: AppFactory = RootFactory()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
@@ -21,10 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         self.window = UIWindow(windowScene: windowScene)
-        let persistentContainer = PersistentContainer()
-        let repository = BudgetCategoryCoreDataRepository(persistentContainer: persistentContainer)
-        let model = PersistentBudgetModel(repository: repository)
-        let rootController = RootController(model: model)
+        let rootController = self.factory.makeRootController()
         let rootViewController = RootViewController(viewModel: rootController)
         self.window!.rootViewController = rootViewController
         self.window!.makeKeyAndVisible()

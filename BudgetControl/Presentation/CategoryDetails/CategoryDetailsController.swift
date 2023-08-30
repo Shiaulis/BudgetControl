@@ -19,13 +19,15 @@ final class CategoryDetailsController: CategoryDetailsViewModel {
     var completion: (() -> Void)?
 
     private let model: BudgetModel
+    private let financeConverterService: FinanceConverterService
     private var disposables: Set<AnyCancellable> = []
     private lazy var logger: Logger = .init(reporterType: Self.self)
 
     // MARK: - Init -
 
-    init(model: BudgetModel) {
+    init(model: BudgetModel, financeConverterService: FinanceConverterService) {
         self.model = model
+        self.financeConverterService = financeConverterService
 
         bindCategoryID()
     }
@@ -76,7 +78,7 @@ final class CategoryDetailsController: CategoryDetailsViewModel {
     private func mapConfiguration(from category: BudgetCategory) -> CategoryDetailsConfiguration {
         .init(
             title: category.title,
-            budget: BudgetConverter().makeCurrencyString(from: category.budget),
+            budget: self.financeConverterService.makeCurrencyString(from: category.budget) ?? "",
             isDeleteEnabled: true
         )
     }

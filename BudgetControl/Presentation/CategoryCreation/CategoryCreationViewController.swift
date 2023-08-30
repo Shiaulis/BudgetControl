@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CurrencyFormatter
+import CurrencyUITextFieldDelegate
 
 struct CategoryCreationConfiguration {
 
@@ -18,7 +20,8 @@ struct CategoryCreationConfiguration {
 protocol CategoryCreationViewModel {
 
     var configuration: CategoryCreationConfiguration { get }
-    func createCategory(title: String?, budget: String?)
+    func saveTapped(title: String?, budget: String?)
+    func dismiss()
 }
 
 final class CategoryCreationViewController: UIViewController {
@@ -78,6 +81,7 @@ final class CategoryCreationViewController: UIViewController {
         self.budgetTextField.translatesAutoresizingMaskIntoConstraints = false
         self.budgetTextField.borderStyle = .roundedRect
         self.budgetTextField.placeholder = self.viewModel.configuration.budgetPlaceholder
+        self.budgetTextField.keyboardType = .decimalPad
 
         NSLayoutConstraint.activate([
             self.budgetTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
@@ -90,6 +94,7 @@ final class CategoryCreationViewController: UIViewController {
         self.spentForNowTextField.translatesAutoresizingMaskIntoConstraints = false
         self.spentForNowTextField.borderStyle = .roundedRect
         self.spentForNowTextField.placeholder = self.viewModel.configuration.spentForNowPlaceholder
+        self.budgetTextField.keyboardType = .decimalPad
 
         NSLayoutConstraint.activate([
             self.spentForNowTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
@@ -102,7 +107,12 @@ final class CategoryCreationViewController: UIViewController {
         self.title = NSLocalizedString("New category", comment: "")
         self.navigationItem.rightBarButtonItem = .systemActionItem(.save) { [weak self] in
             guard let self else { return }
-            self.viewModel.createCategory(title: self.titleTextField.text, budget: self.budgetTextField.text)
+            self.viewModel.saveTapped(title: self.titleTextField.text, budget: self.budgetTextField.text)
+        }
+
+        self.navigationItem.leftBarButtonItem = .systemActionItem(.cancel) { [weak self] in
+            guard let self else { return }
+            self.viewModel.dismiss()
         }
     }
 }

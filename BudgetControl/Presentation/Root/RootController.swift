@@ -13,18 +13,22 @@ final class RootController {
     // MARK: - Properties -
 
     private let model: BudgetModel
+    private let financeConverterService: FinanceConverterService
+    private let factory: AppFactory
+
     @Published private var routeCommand: RootViewModelRouteCommand?
     @Published private var categoryList: [BudgetCategory.ID] = []
 
-    private let categoryDetails: CategoryDetailsController
+    private lazy var categoryDetails: CategoryDetailsController = self.factory.makeCategoryDetailsController()
 
     private var disposables: Set<AnyCancellable> = []
 
     // MARK: - Init -
 
-    init(model: BudgetModel) {
+    init(model: BudgetModel, financeConverterService: FinanceConverterService, factory: AppFactory) {
         self.model = model
-        self.categoryDetails = .init(model: model)
+        self.financeConverterService = financeConverterService
+        self.factory = factory
 
         self.categoryDetails.completion = {
             self.routeCommand = .categoryList
@@ -55,7 +59,7 @@ final class RootController {
     private func mapConfiguration(from category: BudgetCategory) -> CategoryListItemConfiguration {
         .init(
             title: category.title,
-            budgetValue: BudgetConverter().makeCurrencyString(from: category.budget),
+            budgetValue: self.financeConverterService.makeCurrencyString(from: category.budget) ?? "",
             id: category.id
         )
     }
@@ -106,18 +110,22 @@ extension RootController: CategoryCreationViewModel {
 
     var configuration: CategoryCreationConfiguration { .init() }
 
-    func createCategory(title: String?, budget: String?) {
+    func saveTapped(title: String?, budget: String?) {
         guard let title else {
             assertionFailure("We need to add input validation in future")
             return
         }
 
-        guard let budgetDecimalValue = Decimal(string: budget ?? "0") else {
+        guard let budgetDecimalValue = self.financeConverterService.makeDecimal(from: budget ?? "0") else {
             assertionFailure("We need to add input validation in future")
             return
         }
 
         requestAddNewCategory(title: title, budget: budgetDecimalValue)
+        self.routeCommand = .dismiss
+    }
+
+    func dismiss() {
         self.routeCommand = .dismiss
     }
 
