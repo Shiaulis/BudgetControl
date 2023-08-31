@@ -43,6 +43,7 @@ final class CategoryCreationViewController: UIViewController {
 
         setup()
         setupNavigation()
+        setupKeyboardShortcuts()
     }
 
     required init?(coder: NSCoder) {
@@ -69,6 +70,7 @@ final class CategoryCreationViewController: UIViewController {
         self.titleTextField.borderStyle = .roundedRect
         self.titleTextField.placeholder = self.viewModel.configuration.titlePlaceholder
         self.titleTextField.becomeFirstResponder()
+        self.titleTextField.delegate = self
 
         NSLayoutConstraint.activate([
             self.titleTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
@@ -82,6 +84,7 @@ final class CategoryCreationViewController: UIViewController {
         self.budgetTextField.borderStyle = .roundedRect
         self.budgetTextField.placeholder = self.viewModel.configuration.budgetPlaceholder
         self.budgetTextField.keyboardType = .decimalPad
+        self.budgetTextField.delegate = self
 
         NSLayoutConstraint.activate([
             self.budgetTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
@@ -94,7 +97,9 @@ final class CategoryCreationViewController: UIViewController {
         self.spentForNowTextField.translatesAutoresizingMaskIntoConstraints = false
         self.spentForNowTextField.borderStyle = .roundedRect
         self.spentForNowTextField.placeholder = self.viewModel.configuration.spentForNowPlaceholder
-        self.budgetTextField.keyboardType = .decimalPad
+        self.spentForNowTextField.keyboardType = .decimalPad
+        self.spentForNowTextField.returnKeyType = .done
+        self.spentForNowTextField.delegate = self
 
         NSLayoutConstraint.activate([
             self.spentForNowTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
@@ -106,13 +111,36 @@ final class CategoryCreationViewController: UIViewController {
     private func setupNavigation() {
         self.title = NSLocalizedString("New category", comment: "")
         self.navigationItem.rightBarButtonItem = .systemActionItem(.save) { [weak self] in
-            guard let self else { return }
-            self.viewModel.saveTapped(title: self.titleTextField.text, budget: self.budgetTextField.text)
+            self?.saveTapped()
         }
 
         self.navigationItem.leftBarButtonItem = .systemActionItem(.cancel) { [weak self] in
-            guard let self else { return }
-            self.viewModel.dismiss()
+            self?.dismissTapped()
         }
+    }
+
+    private func setupKeyboardShortcuts() {
+        let escape = UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags: [], action: #selector(dismissTapped))
+        addKeyCommand(escape)
+
+    }
+
+    @objc private func dismissTapped() {
+        self.viewModel.dismiss()
+    }
+
+    @objc private func saveTapped() {
+        self.viewModel.saveTapped(title: self.titleTextField.text, budget: self.budgetTextField.text)
+    }
+
+    override var canBecomeFirstResponder: Bool { true }
+}
+
+extension CategoryCreationViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.saveTapped()
+        return true
     }
 }

@@ -41,7 +41,7 @@ final class PersistentBudgetModel: BudgetModel {
 
         do {
             try self.repository.save(category)
-            self.logger.log("Category with title: \"\(title)\" was saved successfully")
+            self.logger.log("Category \"\(title)\" was created successfully")
             updateCategoryIDList()
         } catch {
             self.logger.error("Failed to create new category. Error: \(error.localizedDescription)")
@@ -62,6 +62,7 @@ final class PersistentBudgetModel: BudgetModel {
     func deleteCategory(by id: BudgetCategory.ID) {
         do {
             try self.repository.deleteCategory(by: id)
+            self.logger.log("Category \"\(id)\" was deleted successfully")
             updateCategoryIDList()
         } catch {
             self.logger.error("Failed to delete category with ID: \(id). Error: \(error)")
