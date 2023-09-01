@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B10D6D042AA22F7C00E0F5E4 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D6D032AA22F7C00E0F5E4 /* DateService.swift */; };
+		B10D6D072AA2321800E0F5E4 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D6D062AA2321800E0F5E4 /* Date+Extensions.swift */; };
 		B1914FE72A993B4D0069727C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1914FE62A993B4D0069727C /* AppDelegate.swift */; };
 		B1914FE92A993B4D0069727C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1914FE82A993B4D0069727C /* SceneDelegate.swift */; };
 		B1914FEB2A993B4D0069727C /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1914FEA2A993B4D0069727C /* CategoryListViewController.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B10D6D032AA22F7C00E0F5E4 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
+		B10D6D062AA2321800E0F5E4 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		B1914FE32A993B4D0069727C /* BudgetControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1914FE62A993B4D0069727C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1914FE82A993B4D0069727C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 				B1E7B36B2A9C84BD00C65DCF /* BudgetCategoryRepository.swift */,
 				B1E7B3C12A9DF3B200C65DCF /* FinanceConverterService.swift */,
 				B1E7B3712A9CA29400C65DCF /* Database */,
+				B10D6D032AA22F7C00E0F5E4 /* DateService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 				B1E7B3572A9BFD7A00C65DCF /* Logger+Extensions.swift */,
 				B1E7B36E2A9C88CA00C65DCF /* NSObject+Extensions.swift */,
 				B1E7B37C2A9CB34C00C65DCF /* UIBarButtonItem+Extensions.swift */,
+				B10D6D062AA2321800E0F5E4 /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -338,11 +344,13 @@
 				B1914FE72A993B4D0069727C /* AppDelegate.swift in Sources */,
 				B1BC77D22A9F3CD600F49A23 /* RootFactory.swift in Sources */,
 				B19150262A9A4E4D0069727C /* RootController.swift in Sources */,
+				B10D6D072AA2321800E0F5E4 /* Date+Extensions.swift in Sources */,
 				B1914FF12A993B4D0069727C /* BudgetControl.xcdatamodeld in Sources */,
 				B1E7B3692A9C05D100C65DCF /* PersistentContainer.swift in Sources */,
 				B19150242A9A251E0069727C /* RootViewModel.swift in Sources */,
 				B19150282A9A510C0069727C /* BudgetModel.swift in Sources */,
 				B1E7B3802A9CC01400C65DCF /* CategoryDetailsController.swift in Sources */,
+				B10D6D042AA22F7C00E0F5E4 /* DateService.swift in Sources */,
 				B1E7B3582A9BFD7A00C65DCF /* Logger+Extensions.swift in Sources */,
 				B191502F2A9B500B0069727C /* CategoryCreationViewController.swift in Sources */,
 				B1E7B36F2A9C88CA00C65DCF /* NSObject+Extensions.swift in Sources */,
