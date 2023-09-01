@@ -11,12 +11,16 @@ import OSLog
 
 final class CategoryDetailsController: CategoryDetailsViewModel {
 
+    enum ExternalAction {
+        case dismiss
+    }
+
     // MARK: - Properties -
 
     @Published var controllerState: CategoryDetailsState = .empty
     @Published var categoryID: BudgetCategory.ID?
 
-    var completion: (() -> Void)?
+    var externalActionBlock: ((ExternalAction) -> Void)!
 
     private let model: BudgetModel
     private let financeConverterService: FinanceConverterService
@@ -46,7 +50,7 @@ final class CategoryDetailsController: CategoryDetailsViewModel {
         }
 
         self.model.deleteCategory(by: categoryID)
-        self.completion?()
+        self.externalActionBlock(.dismiss)
     }
 
     // MARK: - Private -

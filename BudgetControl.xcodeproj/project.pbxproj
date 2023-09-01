@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B104C0BC2AA273180085B8DA /* CategoryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B104C0BB2AA273180085B8DA /* CategoryListController.swift */; };
+		B104C0C02AA277EB0085B8DA /* CategoryCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B104C0BF2AA277EB0085B8DA /* CategoryCreationController.swift */; };
 		B10D6D042AA22F7C00E0F5E4 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D6D032AA22F7C00E0F5E4 /* DateService.swift */; };
 		B10D6D072AA2321800E0F5E4 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D6D062AA2321800E0F5E4 /* Date+Extensions.swift */; };
 		B1914FE72A993B4D0069727C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1914FE62A993B4D0069727C /* AppDelegate.swift */; };
@@ -19,8 +21,7 @@
 		B191501A2A994A570069727C /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150192A994A570069727C /* CategoryCollectionViewCell.swift */; };
 		B19150202A9A198A0069727C /* CategoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191501F2A9A198A0069727C /* CategoryDetailsViewController.swift */; };
 		B19150222A9A1B0F0069727C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150212A9A1B0F0069727C /* RootViewController.swift */; };
-		B19150242A9A251E0069727C /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150232A9A251E0069727C /* RootViewModel.swift */; };
-		B19150262A9A4E4D0069727C /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150252A9A4E4D0069727C /* RootController.swift */; };
+		B19150262A9A4E4D0069727C /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150252A9A4E4D0069727C /* RootCoordinator.swift */; };
 		B19150282A9A510C0069727C /* BudgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19150272A9A510C0069727C /* BudgetModel.swift */; };
 		B191502F2A9B500B0069727C /* CategoryCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */; };
 		B1BC77D22A9F3CD600F49A23 /* RootFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC77D12A9F3CD600F49A23 /* RootFactory.swift */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B104C0BB2AA273180085B8DA /* CategoryListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListController.swift; sourceTree = "<group>"; };
+		B104C0BF2AA277EB0085B8DA /* CategoryCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCreationController.swift; sourceTree = "<group>"; };
 		B10D6D032AA22F7C00E0F5E4 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
 		B10D6D062AA2321800E0F5E4 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		B1914FE32A993B4D0069727C /* BudgetControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,8 +64,7 @@
 		B19150192A994A570069727C /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B191501F2A9A198A0069727C /* CategoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailsViewController.swift; sourceTree = "<group>"; };
 		B19150212A9A1B0F0069727C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		B19150232A9A251E0069727C /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
-		B19150252A9A4E4D0069727C /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
+		B19150252A9A4E4D0069727C /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		B19150272A9A510C0069727C /* BudgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetModel.swift; sourceTree = "<group>"; };
 		B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCreationViewController.swift; sourceTree = "<group>"; };
 		B1BC77D12A9F3CD600F49A23 /* RootFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFactory.swift; sourceTree = "<group>"; };
@@ -195,8 +197,7 @@
 		B1E7B3782A9CA3BC00C65DCF /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				B19150252A9A4E4D0069727C /* RootController.swift */,
-				B19150232A9A251E0069727C /* RootViewModel.swift */,
+				B19150252A9A4E4D0069727C /* RootCoordinator.swift */,
 				B19150212A9A1B0F0069727C /* RootViewController.swift */,
 			);
 			path = Root;
@@ -205,6 +206,7 @@
 		B1E7B3792A9CA3C300C65DCF /* CategoryList */ = {
 			isa = PBXGroup;
 			children = (
+				B104C0BB2AA273180085B8DA /* CategoryListController.swift */,
 				B1914FEA2A993B4D0069727C /* CategoryListViewController.swift */,
 				B19150192A994A570069727C /* CategoryCollectionViewCell.swift */,
 			);
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				B191502E2A9B500B0069727C /* CategoryCreationViewController.swift */,
+				B104C0BF2AA277EB0085B8DA /* CategoryCreationController.swift */,
 			);
 			path = CategoryCreation;
 			sourceTree = "<group>";
@@ -343,18 +346,19 @@
 				B19150222A9A1B0F0069727C /* RootViewController.swift in Sources */,
 				B1914FE72A993B4D0069727C /* AppDelegate.swift in Sources */,
 				B1BC77D22A9F3CD600F49A23 /* RootFactory.swift in Sources */,
-				B19150262A9A4E4D0069727C /* RootController.swift in Sources */,
+				B19150262A9A4E4D0069727C /* RootCoordinator.swift in Sources */,
 				B10D6D072AA2321800E0F5E4 /* Date+Extensions.swift in Sources */,
 				B1914FF12A993B4D0069727C /* BudgetControl.xcdatamodeld in Sources */,
 				B1E7B3692A9C05D100C65DCF /* PersistentContainer.swift in Sources */,
-				B19150242A9A251E0069727C /* RootViewModel.swift in Sources */,
 				B19150282A9A510C0069727C /* BudgetModel.swift in Sources */,
 				B1E7B3802A9CC01400C65DCF /* CategoryDetailsController.swift in Sources */,
 				B10D6D042AA22F7C00E0F5E4 /* DateService.swift in Sources */,
+				B104C0C02AA277EB0085B8DA /* CategoryCreationController.swift in Sources */,
 				B1E7B3582A9BFD7A00C65DCF /* Logger+Extensions.swift in Sources */,
 				B191502F2A9B500B0069727C /* CategoryCreationViewController.swift in Sources */,
 				B1E7B36F2A9C88CA00C65DCF /* NSObject+Extensions.swift in Sources */,
 				B1E7B3652A9C022E00C65DCF /* BCBudgetCategory+CoreDataClass.swift in Sources */,
+				B104C0BC2AA273180085B8DA /* CategoryListController.swift in Sources */,
 				B1E7B3662A9C022E00C65DCF /* BCBudgetCategory+CoreDataProperties.swift in Sources */,
 				B1914FE92A993B4D0069727C /* SceneDelegate.swift in Sources */,
 			);

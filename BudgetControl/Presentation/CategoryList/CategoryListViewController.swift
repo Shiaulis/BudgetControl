@@ -19,8 +19,7 @@ struct CategoryListItemConfiguration {
 
 protocol CategoryListViewModel {
 
-    var categories: AnyPublisher<[BudgetCategory.ID], Never> { get }
-
+    func makeCategoriesPublisher() -> AnyPublisher<[BudgetCategory.ID], Never>
     func didSelectCategory(_ id: BudgetCategory.ID)
     func getConfiguration(for id: BudgetCategory.ID) -> CategoryListItemConfiguration?
     func createNewCategory()
@@ -55,10 +54,14 @@ final class CategoryListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureNavigation()
+        setupNavigation()
         configureHierarchy()
         configureDataSource()
         bindViewModel()
+    }
+
+    deinit {
+        print("")
     }
 
 }
@@ -80,7 +83,7 @@ extension CategoryListViewController: UICollectionViewDelegate {
 extension CategoryListViewController {
 
     private func bindViewModel() {
-        self.viewModel.categories
+        self.viewModel.makeCategoriesPublisher()
             .receive(on: RunLoop.main)
             .sink { categories in
                 self.applySnapshot(using: categories)
@@ -113,7 +116,7 @@ extension CategoryListViewController {
         }
     }
 
-    private func configureNavigation() {
+    private func setupNavigation() {
         self.title = NSLocalizedString("Categories", comment: "")
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.rightBarButtonItem = .systemActionItem(.add) { [weak self] in

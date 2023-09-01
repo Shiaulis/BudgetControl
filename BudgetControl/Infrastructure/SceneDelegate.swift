@@ -10,7 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    private let factory: AppFactory = RootFactory()
+    private lazy var factory: AppFactory = RootFactory()
+    private var coordinators: [RootCoordinator] = []
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
@@ -22,9 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         self.window = UIWindow(windowScene: windowScene)
-        let rootController = self.factory.makeRootController()
-        let rootViewController = RootViewController(viewModel: rootController)
-        self.window!.rootViewController = rootViewController
+        let coordinator = RootCoordinator(factory: self.factory)
+        self.window!.rootViewController = coordinator.viewController
+        self.coordinators.append(coordinator)
         self.window!.makeKeyAndVisible()
     }
 
