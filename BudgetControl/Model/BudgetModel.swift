@@ -12,7 +12,7 @@ import OSLog
 protocol BudgetModel: AnyObject {
 
     func categoryListPublisher() -> AnyPublisher <[BudgetCategory.ID], Never>
-    func addCategory(title: String, budget: Decimal)
+    func addCategory(title: String, budget: Decimal, spent: Decimal)
     func getCategory(by id: BudgetCategory.ID) -> BudgetCategory?
     func deleteCategory(by id: BudgetCategory.ID)
 
@@ -36,8 +36,8 @@ final class PersistentBudgetModel: BudgetModel {
         return self.$categoryIDs.eraseToAnyPublisher()
     }
 
-    func addCategory(title: String, budget: Decimal) {
-        let category: BudgetCategory = .newCategory(title: title, budget: budget)
+    func addCategory(title: String, budget: Decimal, spent: Decimal) {
+        let category: BudgetCategory = .newCategory(title: title, budget: budget, spent: spent)
 
         do {
             try self.repository.save(category)
@@ -90,7 +90,7 @@ final class FakeBudgetModel: BudgetModel {
         data.removeAll { $0.id == id }
     }
 
-    func addCategory(title: String, budget: Decimal) {
+    func addCategory(title: String, budget: Decimal, spent: Decimal) {
         self.data.append(.generateRandom())
     }
 

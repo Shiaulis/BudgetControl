@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import OSLog
 
 final class RootController {
 
@@ -22,6 +23,7 @@ final class RootController {
     private lazy var categoryDetails: CategoryDetailsController = self.factory.makeCategoryDetailsController()
 
     private var disposables: Set<AnyCancellable> = []
+    private lazy var logger: Logger = .init(reporterType: Self.self)
 
     // MARK: - Init -
 
@@ -46,9 +48,9 @@ final class RootController {
             .store(in: &self.disposables)
     }
 
-    private func requestAddNewCategory(title: String, budget: Decimal) {
+    private func requestAddNewCategory(title: String, budget: Decimal, spent: Decimal) {
         Task {
-            self.model.addCategory(title: title, budget: budget)
+            self.model.addCategory(title: title, budget: budget, spent: spent)
         }
     }
 
@@ -59,7 +61,8 @@ final class RootController {
     private func mapConfiguration(from category: BudgetCategory) -> CategoryListItemConfiguration {
         .init(
             title: category.title,
-            budgetValue: self.financeConverterService.makeCurrencyString(from: category.budget) ?? "",
+            budgetTotalValue: self.financeConverterService.makeCurrencyString(from: category.budget) ?? "",
+            budgetSpentValue: self.financeConverterService.makeCurrencyString(from: category.spent) ?? "",
             id: category.id
         )
     }
@@ -110,18 +113,26 @@ extension RootController: CategoryCreationViewModel {
 
     var configuration: CategoryCreationConfiguration { .init() }
 
-    func saveTapped(title: String?, budget: String?) {
+    func saveTapped(title: String?, budgetTotal: String?, budgetSpent: String?) {
         guard let title else {
-            assertionFailure("We need to add input validation in future")
+            self.logger.error("Nil title value during category creation is not expected")
+            assertionFailure()
             return
         }
 
-        guard let budgetDecimalValue = self.financeConverterService.makeDecimal(from: budget ?? "0") else {
-            assertionFailure("We need to add input validation in future")
+        guard let budgetDecimalValue = self.financeConverterService.makeDecimal(from: budgetTotal ?? "0") else {
+            self.logger.error("Nil budget total value during category creation is not expected")
+            assertionFailure()
             return
         }
 
-        requestAddNewCategory(title: title, budget: budgetDecimalValue)
+        guard let spentDecimalValue = self.financeConverterService.makeDecimal(from: budgetSpent ?? "0") else {
+            self.logger.error("Nil budget spent value during category creation is not expected")
+            assertionFailure()
+            return
+        }
+
+        requestAddNewCategory(title: title, budget: budgetDecimalValue, spent: spentDecimalValue)
         self.routeCommand = .dismiss
     }
 

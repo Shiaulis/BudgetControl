@@ -12,7 +12,8 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties -
 
     private let titleLabel = UILabel()
-    private let budgetView = BudgetView()
+    private let budgetTotalView = BudgetView()
+    private let budgetSpentView = BudgetView()
 
     // MARK: - Init -
 
@@ -30,8 +31,10 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
 
     func configure(for configuration: CategoryListItemConfiguration) {
         self.titleLabel.text = configuration.title
-        self.budgetView.titleLabel.text = configuration.budgetTitle
-        self.budgetView.valueLabel.text = configuration.budgetValue
+        self.budgetTotalView.titleLabel.text = configuration.budgetTotalTitle
+        self.budgetTotalView.valueLabel.text = configuration.budgetTotalValue
+        self.budgetSpentView.titleLabel.text = configuration.budgetSpentTitle
+        self.budgetSpentView.valueLabel.text = configuration.budgetSpentValue
     }
 
     // MARK: - Private -
@@ -40,8 +43,11 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         addSubview(self.titleLabel)
         setupTitleLabel()
 
-        addSubview(self.budgetView)
-        setupBudgetView()
+        addSubview(self.budgetTotalView)
+        setupBudgetTotalView()
+
+        addSubview(self.budgetSpentView)
+        setupBudgetSpentView()
     }
 
     private func setupTitleLabel() {
@@ -56,16 +62,24 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         ])
     }
 
-    private func setupBudgetView() {
-        self.budgetView.translatesAutoresizingMaskIntoConstraints = false
+    private func setupBudgetTotalView() {
+        self.budgetTotalView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.budgetView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            self.budgetView.topAnchor.constraint(equalToSystemSpacingBelow: self.titleLabel.bottomAnchor, multiplier: 1),
-            self.budgetView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            self.bottomAnchor.constraint(equalToSystemSpacingBelow: self.budgetView.bottomAnchor, multiplier: 1)
+            self.budgetTotalView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            self.budgetTotalView.topAnchor.constraint(equalToSystemSpacingBelow: self.titleLabel.bottomAnchor, multiplier: 1),
+            self.budgetTotalView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor)
         ])
     }
 
+    private func setupBudgetSpentView() {
+        self.budgetSpentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.budgetSpentView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            self.budgetSpentView.topAnchor.constraint(equalToSystemSpacingBelow: self.budgetTotalView.bottomAnchor, multiplier: 1),
+            self.budgetSpentView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            self.bottomAnchor.constraint(equalToSystemSpacingBelow: self.budgetSpentView.bottomAnchor, multiplier: 1)
+        ])
+    }
 }
 
 private class BudgetView: UIStackView {

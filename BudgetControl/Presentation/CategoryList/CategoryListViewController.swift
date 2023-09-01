@@ -10,8 +10,10 @@ import Combine
 
 struct CategoryListItemConfiguration {
     let title: String
-    let budgetTitle: String = NSLocalizedString("Budget", comment: "")
-    let budgetValue: String
+    let budgetTotalTitle: String = NSLocalizedString("Budget", comment: "")
+    let budgetTotalValue: String
+    let budgetSpentTitle: String = NSLocalizedString("Spent", comment: "")
+    let budgetSpentValue: String
     let id: BudgetCategory.ID
 }
 

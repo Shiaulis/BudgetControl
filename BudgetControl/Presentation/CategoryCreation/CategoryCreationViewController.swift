@@ -20,7 +20,7 @@ struct CategoryCreationConfiguration {
 protocol CategoryCreationViewModel {
 
     var configuration: CategoryCreationConfiguration { get }
-    func saveTapped(title: String?, budget: String?)
+    func saveTapped(title: String?, budgetTotal: String?, budgetSpent: String?)
     func dismiss()
 }
 
@@ -130,7 +130,11 @@ final class CategoryCreationViewController: UIViewController {
     }
 
     @objc private func saveTapped() {
-        self.viewModel.saveTapped(title: self.titleTextField.text, budget: self.budgetTextField.text)
+        self.viewModel.saveTapped(
+            title: self.titleTextField.text,
+            budgetTotal: self.budgetTextField.text,
+            budgetSpent: self.spentForNowTextField.text
+        )
     }
 
     override var canBecomeFirstResponder: Bool { true }

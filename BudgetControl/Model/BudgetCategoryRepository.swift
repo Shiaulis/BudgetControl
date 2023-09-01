@@ -13,15 +13,17 @@ struct BudgetCategory: Identifiable {
     let id: String
     let title: String
     let budget: Decimal
+    let spent: Decimal
 
-    fileprivate init(id: String, title: String, budget: Decimal) {
+    fileprivate init(id: String, title: String, budget: Decimal, spent: Decimal) {
         self.id = id
         self.title = title
         self.budget = budget
+        self.spent = spent
     }
 
-    static func newCategory(title: String, budget: Decimal) -> BudgetCategory {
-        .init(id: newCategoryID, title: title, budget: budget)
+    static func newCategory(title: String, budget: Decimal = 0, spent: Decimal = 0) -> BudgetCategory {
+        .init(id: newCategoryID, title: title, budget: budget, spent: spent)
     }
 
     fileprivate static let newCategoryID: BudgetCategory.ID = "newCategory"
@@ -32,7 +34,8 @@ struct BudgetCategory: Identifiable {
         return .init(
             id: uuid,
             title: "random \(uuid)",
-            budget: 1
+            budget: 1,
+            spent: 0
         )
     }
 
@@ -105,7 +108,8 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
         .init(
             id: convertToString(bcCategory.objectID),
             title: bcCategory.title,
-            budget: bcCategory.budget as Decimal
+            budget: bcCategory.budget as Decimal,
+            spent: bcCategory.spent as Decimal
         )
     }
 
@@ -138,6 +142,7 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
     private func update(_ bcCategory: BCBudgetCategory, from category: BudgetCategory) {
         bcCategory.title = category.title
         bcCategory.budget = category.budget as NSDecimalNumber
+        bcCategory.spent = category.spent as NSDecimalNumber
     }
 
     private func createBCCategory(from category: BudgetCategory) throws {
@@ -145,8 +150,7 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
             throw Error.wrongObjectType
         }
 
-        newObject.budget = category.budget as NSDecimalNumber
-        newObject.title = category.title
+        update(newObject, from: category)
     }
 
     private func expectedObject(for id: BudgetCategory.ID) throws -> BCBudgetCategory {
