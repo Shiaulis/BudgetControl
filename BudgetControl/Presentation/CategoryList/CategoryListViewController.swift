@@ -51,15 +51,11 @@ final class CategoryListViewController: UIViewController {
         bindViewModel()
     }
 
-    deinit {
-        print("")
-    }
-
 }
 
 extension CategoryListViewController: UICollectionViewDelegate {
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, performPrimaryActionForItemAt indexPath: IndexPath) {
         guard let itemIdentifier = self.dataSource.itemIdentifier(for: indexPath) else {
             assertionFailure("Absence of identifier should be investigated")
             return
@@ -87,6 +83,8 @@ extension CategoryListViewController {
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.collectionView.backgroundColor = .systemBackground
         self.collectionView.delegate = self
+        self.collectionView.allowsFocus = true
+        self.collectionView.selectionFollowsFocus = true
         self.view.addSubview(self.collectionView)
     }
 
