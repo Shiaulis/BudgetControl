@@ -5,11 +5,10 @@
 //  Created by Andrius Shiaulis on 28.08.2023.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 struct BudgetCategory: Identifiable {
-
     let id: String
     let title: String
     let budget: Decimal
@@ -38,24 +37,20 @@ struct BudgetCategory: Identifiable {
             spent: 0
         )
     }
-
 }
 
 protocol BudgetCategoryRepository {
-
     func fetchCategoryListIDs() throws -> [BudgetCategory.ID]
     func category(for id: BudgetCategory.ID) throws -> BudgetCategory
     func save(_ category: BudgetCategory) throws
     func deleteCategory(by id: BudgetCategory.ID) throws
-
 }
 
 final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
-
     // MARK: - Properties
 
     private let persistentContainer: PersistentContainer
-    private var mainContext: NSManagedObjectContext { self.persistentContainer.viewContext }
+    private var mainContext: NSManagedObjectContext { persistentContainer.viewContext }
 
     // MARK: - Init -
 
@@ -66,14 +61,14 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
     // MARK: - BudgetCategoryRepository -
 
     func fetchCategoryListIDs() throws -> [BudgetCategory.ID] {
-        try self.mainContext.performAndWait {
+        try mainContext.performAndWait {
             let objectIDs = try BCBudgetCategory.FetchRequests.allCategoryListIDs().execute()
             return objectIDs.map { convertToString($0) }
         }
     }
 
     func category(for id: BudgetCategory.ID) throws -> BudgetCategory {
-        try self.mainContext.performAndWait {
+        try mainContext.performAndWait {
             let expectedObject = try expectedObject(for: id)
             let category = mapCategory(from: expectedObject)
             return category
@@ -81,7 +76,7 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
     }
 
     func save(_ category: BudgetCategory) throws {
-        try self.mainContext.performAndWait {
+        try mainContext.performAndWait {
             if let existingObject = try existingObject(for: category) {
                 update(existingObject, from: category)
             } else {
@@ -95,7 +90,7 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
     }
 
     func deleteCategory(by id: BudgetCategory.ID) throws {
-        try self.mainContext.performAndWait {
+        try mainContext.performAndWait {
             let objectToDelete = try expectedObject(for: id)
             self.mainContext.delete(objectToDelete)
             try self.mainContext.save()
@@ -122,7 +117,7 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
             throw Error.unableToMakeObjectURLFromString
         }
 
-        let coordinator = self.persistentContainer.persistentStoreCoordinator
+        let coordinator = persistentContainer.persistentStoreCoordinator
         guard let objectID = coordinator.managedObjectID(forURIRepresentation: url) else {
             throw Error.unableToGenerateObjectIDForURL
         }
@@ -136,7 +131,7 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
         }
 
         let objectID = try convertToManagedObjectID(category.id)
-        return try self.mainContext.existingObject(with: objectID) as? BCBudgetCategory
+        return try mainContext.existingObject(with: objectID) as? BCBudgetCategory
     }
 
     private func update(_ bcCategory: BCBudgetCategory, from category: BudgetCategory) {
@@ -146,7 +141,7 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
     }
 
     private func createBCCategory(from category: BudgetCategory) throws {
-        guard let newObject = BCBudgetCategory.create(in: self.mainContext) else {
+        guard let newObject = BCBudgetCategory.create(in: mainContext) else {
             throw Error.wrongObjectType
         }
 
@@ -155,7 +150,7 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
 
     private func expectedObject(for id: BudgetCategory.ID) throws -> BCBudgetCategory {
         let objectID = try convertToManagedObjectID(id)
-        guard let expectedObject = try self.mainContext.existingObject(with: objectID) as? BCBudgetCategory else {
+        guard let expectedObject = try mainContext.existingObject(with: objectID) as? BCBudgetCategory else {
             throw Error.expectedObjectNotFound
         }
 
@@ -164,7 +159,6 @@ final class BudgetCategoryCoreDataRepository: BudgetCategoryRepository {
 }
 
 extension BudgetCategoryCoreDataRepository {
-
     enum Error: Swift.Error {
         case wrongObjectType
         case unableToMakeObjectURLFromString
@@ -174,19 +168,15 @@ extension BudgetCategoryCoreDataRepository {
 }
 
 private extension BCBudgetCategory {
-
     enum FetchRequests {
-
         static func allCategoryListIDs() -> NSFetchRequest<NSManagedObjectID> {
             let request = NSFetchRequest<NSManagedObjectID>(entityName: BCBudgetCategory.className)
             request.resultType = .managedObjectIDResultType
             return request
         }
-
     }
 
     static func create(in context: NSManagedObjectContext) -> Self? {
         NSEntityDescription.insertNewObject(forEntityName: BCBudgetCategory.className, into: context) as? Self
     }
-
 }

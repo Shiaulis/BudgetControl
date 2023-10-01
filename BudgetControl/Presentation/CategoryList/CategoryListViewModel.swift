@@ -1,5 +1,5 @@
 //
-//  CategoryListController.swift
+//  CategoryListViewModel.swift
 //  BudgetControl
 //
 //  Created by Andrius Shiaulis on 01.09.2023.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class CategoryListController: CategoryListViewModel {
+final class CategoryListViewModel {
 
     enum ExternalAction {
         case showCategoryDetails(BudgetCategory.ID)

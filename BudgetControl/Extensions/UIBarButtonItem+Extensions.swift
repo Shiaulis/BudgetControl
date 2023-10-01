@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIBarButtonItem {
-
     static func systemActionItem(_ item: UIBarButtonItem.SystemItem, handler: @escaping () -> Void) -> UIBarButtonItem {
         let primaryAction = UIAction { _ in
             handler()
@@ -16,5 +15,4 @@ extension UIBarButtonItem {
 
         return .init(systemItem: item, primaryAction: primaryAction)
     }
-
 }

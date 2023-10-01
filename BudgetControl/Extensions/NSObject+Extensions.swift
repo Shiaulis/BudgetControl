@@ -8,7 +8,6 @@
 import Foundation
 
 extension NSObject {
-
     static var classFullName: String {
         String(reflecting: self)
     }
@@ -24,5 +23,4 @@ extension NSObject {
     var className: String {
         type(of: self).className
     }
-
 }

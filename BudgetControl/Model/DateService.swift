@@ -5,16 +5,14 @@
 //  Created by Andrius Shiaulis on 01.09.2023.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 typealias ChunkNumber = Int
 
 protocol DateService {
-
-    func numberOfChunksInCurrentMonth () -> Int
+    func numberOfChunksInCurrentMonth() -> Int
     func makeChunksPublisher() -> AnyPublisher<ChunkNumber, DateServiceError>
-
 }
 
 enum DateServiceError: Error {
@@ -25,7 +23,6 @@ enum DateServiceError: Error {
 }
 
 final class SecondsDateService: DateService {
-
     // MARK: - Properties -
 
     private let calendar: Calendar = .current
@@ -34,7 +31,7 @@ final class SecondsDateService: DateService {
     // MARK: - Public API -
 
     func numberOfChunksInCurrentMonth() -> Int {
-        self.calendar.range(of: .second, in: .month, for: .now)?.count ?? 0
+        calendar.range(of: .second, in: .month, for: .now)?.count ?? 0
     }
 
     func makeChunksPublisher() -> AnyPublisher<ChunkNumber, DateServiceError> {
@@ -59,7 +56,7 @@ final class SecondsDateService: DateService {
     }
 
     private func calculateSecondsDifferenceBetween(start: Date, end: Date) throws -> Int {
-        guard let seconds = self.calendar.dateComponents([.second], from: start, to: end).second else {
+        guard let seconds = calendar.dateComponents([.second], from: start, to: end).second else {
             throw DateServiceError.unableToCalculateChunkDifferenceBetweenDates
         }
 
@@ -67,11 +64,10 @@ final class SecondsDateService: DateService {
     }
 
     private func calculateStartOfMonth(for date: Date) throws -> Date {
-        guard let startOfMonth = date.startOfMonth(in: self.calendar) else {
+        guard let startOfMonth = date.startOfMonth(in: calendar) else {
             throw DateServiceError.unableToGetStartOfMonthDate
         }
 
         return startOfMonth
     }
-
 }

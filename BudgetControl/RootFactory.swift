@@ -8,13 +8,12 @@
 import Foundation
 
 protocol AppFactory {
-    func makeCategoryDetailsController() -> CategoryDetailsController
-    func makeCategoryListController() -> CategoryListController
-    func makeCategoryCreationController() -> CategoryCreationController
+    func makeCategoryListViewModel() -> CategoryListViewModel
+    func makeCategoryDetailsViewModel() -> CategoryDetailsViewModel
+    func makeCategoryCreationViewModel() -> CategoryCreationViewModel
 }
 
 final class RootFactory: AppFactory {
-
     // MARK: - Properties -
 
     private lazy var financeConverterService: FinanceConverterService = .init()
@@ -22,16 +21,15 @@ final class RootFactory: AppFactory {
     private lazy var repository = BudgetCategoryCoreDataRepository(persistentContainer: self.persistentContainer)
     private lazy var model: BudgetModel = PersistentBudgetModel(repository: self.repository)
 
-    func makeCategoryDetailsController() -> CategoryDetailsController {
-        CategoryDetailsController(model: self.model, financeConverterService: self.financeConverterService)
+    func makeCategoryDetailsViewModel() -> CategoryDetailsViewModel {
+        CategoryDetailsViewModel(title: "title", budget: "budget", isDeleteEnabled: false)
     }
 
-    func makeCategoryListController() -> CategoryListController {
-        CategoryListController(model: self.model, financeConverterService: self.financeConverterService)
+    func makeCategoryListViewModel() -> CategoryListViewModel {
+        CategoryListViewModel(model: model, financeConverterService: financeConverterService)
     }
 
-    func makeCategoryCreationController() -> CategoryCreationController {
-        CategoryCreationController(model: self.model, financeConverterService: self.financeConverterService)
+    func makeCategoryCreationViewModel() -> CategoryCreationViewModel {
+        CategoryCreationViewModel(model: model, financeConverterService: financeConverterService)
     }
-
 }

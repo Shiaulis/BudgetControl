@@ -8,7 +8,6 @@
 import Foundation
 
 extension Date {
-
     func startOfMonth(in calendar: Calendar = .current) -> Date? {
         let startOfDay = calendar.startOfDay(for: self)
         let dateComponentsForTodayStartTime = calendar.dateComponents([.year, .month], from: startOfDay)
@@ -24,5 +23,4 @@ extension Date {
         let dayBeforeNextMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth)
         return dayBeforeNextMonth
     }
-
 }
