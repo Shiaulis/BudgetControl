@@ -17,15 +17,6 @@ struct CategoryListItemConfiguration {
     let id: BudgetCategory.ID
 }
 
-protocol CategoryListViewModel {
-
-    func makeCategoriesPublisher() -> AnyPublisher<[BudgetCategory.ID], Never>
-    func didSelectCategory(_ id: BudgetCategory.ID)
-    func getConfiguration(for id: BudgetCategory.ID) -> CategoryListItemConfiguration?
-    func createNewCategory()
-
-}
-
 final class CategoryListViewController: UIViewController {
 
     enum Section { case main }

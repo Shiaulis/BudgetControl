@@ -1,5 +1,5 @@
 //
-//  CategoryCreationController.swift
+//  CategoryCreationViewModel.swift
 //  BudgetControl
 //
 //  Created by Andrius Shiaulis on 01.09.2023.
@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-final class CategoryCreationController: CategoryCreationViewModel {
+final class CategoryCreationViewModel {
 
     enum ExternalAction {
         case dismiss

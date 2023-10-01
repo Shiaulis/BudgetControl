@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import CurrencyFormatter
-import CurrencyUITextFieldDelegate
 
 struct CategoryCreationConfiguration {
 
@@ -15,13 +13,6 @@ struct CategoryCreationConfiguration {
     let budgetPlaceholder = NSLocalizedString("Budget amount", comment: "")
     let spentForNowPlaceholder = NSLocalizedString("Spent for now", comment: "")
 
-}
-
-protocol CategoryCreationViewModel {
-
-    var configuration: CategoryCreationConfiguration { get }
-    func saveTapped(title: String?, budgetTotal: String?, budgetSpent: String?)
-    func dismiss()
 }
 
 final class CategoryCreationViewController: UIViewController {
